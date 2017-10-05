@@ -18,8 +18,15 @@ public class Tester {
 		
 		// do not modify any of the below
 		Downloader downloader = new Downloader();
-		downloader.downloadHistoricalData("GOOGL", date1Str, date2Str, "GOOGL.csv");
+		downloader.downloadHistoricalData("GOOGL", date1Str, date2Str, "GOOGL_daily.csv");
 		
+		DataArray dA = new DataArray("GOOGL", ".");
+		
+		dA.load();
+		
+		dA.get(0).display();
+		
+		/**
 		ArrayList<Bar> barList = new ArrayList();
 		
 		try{
@@ -42,7 +49,7 @@ public class Tester {
 			System.out.println("-----------------------");
 		}
 		**/
-		
+		/**
 		int counter = 0;
 		MAC286Date last60DayHigh = null;
 		Analyzer analyzer = new Analyzer();
@@ -66,6 +73,7 @@ public class Tester {
 		}
 		
 		System.out.println(counter + " days satisfy the conditions of Reversal New Highs between " + date1Str + " and " + date2Str);
+		**/
 	}
 
 }

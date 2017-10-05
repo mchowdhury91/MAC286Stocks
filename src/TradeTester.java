@@ -9,8 +9,15 @@ public class TradeTester {
 		
 		Trade trade = new Trade(1, 391f, entryDate, 291f, exitDate, Direction.SHORT);
 		
-		System.out.println(trade.percentPL());
-		System.out.println(trade.PL());
+		System.out.println("Short trade:\nEntry:" + trade.getEntryPrice() + "\nExit: " + trade.getExitPrice() + "\nNumber of Shares: 1");
+		System.out.println("Percent PL: " + trade.percentPL());
+		System.out.println("PL: " + trade.PL());
+		
+		trade = new Trade(1, 391f, entryDate, 291f, exitDate, Direction.LONG);
+		System.out.println();
+		System.out.println("Long trade:\nEntry:" + trade.getEntryPrice() + "\nExit: " + trade.getExitPrice() + "\nNumber of Shares: 1");
+		System.out.println("Percent PL: " + trade.percentPL());
+		System.out.println("PL: " + trade.PL());
 
 	}
 	

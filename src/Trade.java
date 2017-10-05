@@ -27,7 +27,7 @@ public class Trade {
 	private int numberOfShares;
 	
 	public Trade(){
-		this.numberOfShares = 0;
+		this.numberOfShares = 1;
 		
 		entryPrice = exitPrice = 0f;
 		try{

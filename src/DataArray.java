@@ -48,26 +48,48 @@ public class DataArray {
 		barVector.add(b);
 	}
 	
+	public void addAtHead(Bar b){
+		barVector.insertElementAt(b, 0);
+	}
+	
+	public void insert(Bar b, int index){
+		barVector.insertElementAt(b, index);
+	}
+	
 	public Bar at(int index){
-		return barVector.get(index);
+		try{
+			return barVector.get(index);
+		}catch(ArrayIndexOutOfBoundsException e){
+			return null;
+		}
 	}
 	
 	public Bar get(int index){
-		return barVector.get(index);
+		try{
+			return barVector.get(index);
+		}catch(ArrayIndexOutOfBoundsException e){
+			return null;
+		}
 	}
 	
-	public int load() throws IOException, ParseException{
-		BufferedReader in = new BufferedReader(new FileReader(path + "\\" + symbol + "_daily.csv"));
-		in.readLine();
-		
-		int count = 0;
-		String line = null;
-		while((line = in.readLine()) != null){
-			barVector.add(new Bar(line));
-			count++;
+	public int load(){
+		try{			
+			BufferedReader in = new BufferedReader(new FileReader(path + "\\" + symbol + "_daily.csv"));
+			in.readLine();
+			
+			int count = 0;
+			String line = null;
+			while((line = in.readLine()) != null){
+				barVector.add(new Bar(line));
+				count++;
+			}
+			
+			return count;
+		}catch(IOException | ParseException e){
+			return 0;
 		}
 		
-		return count;
+		
 		
 	}
 }

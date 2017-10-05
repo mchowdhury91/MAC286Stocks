@@ -103,10 +103,10 @@ public class Trade {
 		float totalExitPrice = exitPrice * numberOfShares;
 		float totalEntryPrice = entryPrice * numberOfShares;
 		if(direction == Direction.LONG){
-			return (totalExitPrice - totalEntryPrice)/(totalEntryPrice*100);			
+			return ((totalExitPrice - totalEntryPrice)/(totalEntryPrice))*100;			
 		}else{
 			//short
-			return (totalEntryPrice - totalExitPrice)/(totalEntryPrice*100);
+			return ((totalEntryPrice - totalExitPrice)/(totalEntryPrice))*100;
 		}
 	}
 	

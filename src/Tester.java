@@ -12,68 +12,10 @@ public class Tester {
 
 	public static void main(String[] args) throws IOException, ParseException{
 		
-		// modify the following variables to change the dates
-		String date1Str = "2013-08-30";
-		String date2Str = "2017-08-30";
+		MAC286Date date = new MAC286Date("2017-08-30");
+		long time = date.getDate().getTimeInMillis() / 1000L;
 		
-		// do not modify any of the below
-		Downloader downloader = new Downloader();
-		downloader.downloadHistoricalData("GOOGL", date1Str, date2Str, "GOOGL_daily.csv");
-		
-		DataArray dA = new DataArray("GOOGL", ".");
-		
-		dA.load();
-		
-		dA.get(0).display();
-		
-		/**
-		ArrayList<Bar> barList = new ArrayList();
-		
-		try{
-			BufferedReader in = new BufferedReader(new FileReader("GOOGL.csv"));
-			in.readLine();
-			
-			String line;
-			while((line = in.readLine()) != null){
-				barList.add(new Bar(line));
-			}
-		}catch(Exception e){
-			
-		}
-		
-		/**
-		int i = 0;
-		for(Bar bar : barList){
-			System.out.println("No. " + i++);
-			bar.display();
-			System.out.println("-----------------------");
-		}
-		**/
-		/**
-		int counter = 0;
-		MAC286Date last60DayHigh = null;
-		Analyzer analyzer = new Analyzer();
-		
-		for(int i = 59; i < barList.size(); i++){
-			if(analyzer.sixtyDayHigh(i, barList) && analyzer.largest5DayRange(i, barList) && analyzer.outsideDay(i, barList)){
-				int diff = 0;
-				Bar current = barList.get(i);
-				if(last60DayHigh != null){
-					diff = current.getDate().daysBetween(last60DayHigh);
-				}
-				
-				last60DayHigh = current.getDate();
-				
-				System.out.println("Excel Row: " + i+2);
-				System.out.println("Days Since Last 60DH: " + diff);
-				System.out.println(barList.get(i).getDate());				
-				System.out.println(barList.get(i).getHigh());
-				counter++;
-			}
-		}
-		
-		System.out.println(counter + " days satisfy the conditions of Reversal New Highs between " + date1Str + " and " + date2Str);
-		**/
+		System.out.println(time);
 	}
 
 }

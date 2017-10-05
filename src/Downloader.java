@@ -49,7 +49,7 @@ public class Downloader {
 		matcher.appendTail(sb);
 		
 		string = sb.toString();
-		System.out.println(string);
+//		System.out.println(string);
 		return string;
 	}
 	
@@ -70,7 +70,7 @@ public class Downloader {
 		
 		in.close();
 		
-		System.out.println("Before decoding: " + crumb);
+//		System.out.println("Before decoding: " + crumb);
 		
 		return unicodeDecode(crumb);
 	}
@@ -83,7 +83,7 @@ public class Downloader {
 		try{
 			HttpURLConnection urlConn = (HttpURLConnection) url2.openConnection();
 			urlConn.setRequestProperty("Cookie", cookie);
-			System.out.println(cookie);
+//			System.out.println(cookie);
 			is = urlConn.getInputStream();
 			fos = new FileOutputStream(filename);
 			
@@ -146,7 +146,7 @@ public class Downloader {
 		MAC286Date startDate = new MAC286Date(start);
 		MAC286Date endDate = new MAC286Date(end);
 		
-		endDate.setDay(endDate.getDay()+1);
+//		endDate.setDay(endDate.getDay()+1);
 		
 		long period1 = startDate.getDate().getTimeInMillis() / 1000L;
 		long period2 = endDate.getDate().getTimeInMillis() / 1000L;

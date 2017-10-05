@@ -2,9 +2,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Iterator;
 import java.util.Vector;
 
-public class DataArray {
+public class DataArray implements Iterable<Bar>{
 
 	private Vector<Bar> barVector;
 	private String symbol;
@@ -91,5 +92,10 @@ public class DataArray {
 		
 		
 		
+	}
+
+	@Override
+	public Iterator<Bar> iterator() {
+		return barVector.iterator();
 	}
 }

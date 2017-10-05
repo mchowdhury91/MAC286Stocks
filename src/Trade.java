@@ -25,20 +25,13 @@ public class Trade {
 	private MAC286Date entryDate, exitDate;
 	private float entryPrice, exitPrice;
 	private int numberOfShares;
+	private boolean on;
 	
 	public Trade(){
 		this.numberOfShares = 1;
 		
-		entryPrice = exitPrice = 0f;
-		try{
-			entryDate = new MAC286Date("2000-01-01");
-			exitDate = new MAC286Date("2000-01-01");
-		}catch(ParseException e){
-			entryDate = null;
-			exitDate = null;
-		}
-		
 		direction = Direction.LONG;
+		on = true;
 	}
 	
 	public Trade(int numberOfShares, 
@@ -55,6 +48,7 @@ public class Trade {
 		this.exitPrice = exitPrice;
 		
 		this.direction = direction;
+		on = false;
 	}
 	
 	public Trade(int numberOfShares){
@@ -63,31 +57,41 @@ public class Trade {
 		entryPrice = exitPrice = 0f;
 		try{
 			entryDate = new MAC286Date("2000-01-01");
-			exitDate = new MAC286Date("2000-01-01");
 		}catch(ParseException e){
 			entryDate = null;
 			exitDate = null;
 		}
 		
 		direction = Direction.LONG;
+		on = true;
 	}
 	
 	public Trade(int numberOfShares, Direction direction){
 		this.numberOfShares = numberOfShares;
 		
 		entryPrice = exitPrice = 0f;
-		try{
-			entryDate = new MAC286Date("2000-01-01");
-			exitDate = new MAC286Date("2000-01-01");
-		}catch(ParseException e){
-			entryDate = null;
-			exitDate = null;
-		}
+		entryDate = null;
+		exitDate = null;
 		
+		on = true;
 		this.direction = direction;	
 	}
 	
+	public Trade(MAC286Date entryDate, float entryPrice, Direction direction){
+		numberOfShares = 1;
+		this.entryPrice = entryPrice;
+		this.entryDate = entryDate;
+		
+		on = true;
+		this.direction = direction;			
+	}
+	
 	public float PL(){
+		if(on){
+			// trade not closed
+			return 0f;
+		}
+		
 		float pl = 0;
 		if(direction == Direction.LONG){
 			pl = (exitPrice * numberOfShares) - (entryPrice * numberOfShares);			
@@ -100,6 +104,10 @@ public class Trade {
 	}
 	
 	public float percentPL(){
+		if(on){
+			// trade not closed
+			return 0f;
+		}
 		float totalExitPrice = exitPrice * numberOfShares;
 		float totalEntryPrice = entryPrice * numberOfShares;
 		if(direction == Direction.LONG){

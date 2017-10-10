@@ -9,6 +9,11 @@ import java.util.Date;
  *
  *
  */
+
+/*
+ * Dependencies:
+ * MAC286Date.java
+ */
 public class Bar {
 
 	

@@ -1,6 +1,13 @@
 import java.io.IOException;
 import java.text.ParseException;
 
+/*
+ * Dependencies:
+ * Bar.java
+ * DataArray.java
+ * Downloader.java
+ * MAC286Date.java
+ */
 public class DataArrayTester {
 	public static void main(String[] args) throws IOException, ParseException{
 		

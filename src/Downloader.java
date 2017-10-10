@@ -28,6 +28,11 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/*
+ * Dependencies:
+ * MAC286Date.java
+ */
+
 public class Downloader {
 	
 	private String getCookie(HttpURLConnection con){

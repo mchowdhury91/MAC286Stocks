@@ -1,10 +1,17 @@
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Iterator;
 import java.util.Vector;
 
+
+/*
+ * Dependencies:
+ * Bar.java
+ * MAC286Date.java
+ */
 public class DataArray implements Iterable<Bar>{
 
 	private Vector<Bar> barVector;
@@ -86,12 +93,20 @@ public class DataArray implements Iterable<Bar>{
 			}
 			
 			return count;
-		}catch(IOException | ParseException e){
-			return 0;
+		}catch(FileNotFoundException e){
+			System.out.println("Nothing was loaded because " + path + "\\" + symbol + "_daily.csv was not found");
+			e.printStackTrace();
+			return 0;			
 		}
-		
-		
-		
+		catch(IOException e){
+			System.out.println("Nothing was loaded because of an IOException");
+			e.printStackTrace();
+			return 0;
+		} catch (ParseException e) {
+			System.out.println("Nothing was loaded because of a ParseException");
+			e.printStackTrace();
+			return 0;
+		}		
 	}
 
 	@Override

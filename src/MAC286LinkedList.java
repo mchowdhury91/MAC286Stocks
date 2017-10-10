@@ -1,8 +1,9 @@
 
 public class MAC286LinkedList<T> {
 
-	MAC286Node<T> head;
-	MAC286Node<T> tail;
+	private int size;
+	private MAC286Node<T> head;
+	private MAC286Node<T> tail;
 
 	public MAC286LinkedList() {
 		head = null;
@@ -49,12 +50,13 @@ public class MAC286LinkedList<T> {
 	}
 
 	public void insert(T t, int index) {
+		// TODO: Finish insert
 		// if inserting at head
 		if (index == 0) {
 			head = new MAC286Node<T>(t, head);
 			return;
 		}
-		
+
 		MAC286Node<T> temp = get(index - 1);
 
 		// if the index is out of range, just add to the tail
@@ -77,4 +79,16 @@ public class MAC286LinkedList<T> {
 
 	}
 
+	public int getSize() {
+		return size;
+	}
+
+	public boolean isEmpty() { // TODO finish isEmpty()
+		return false;
+	}
+
+	/**
+	 * isFull() insertHead() insertTail() insert(int index, T t) removeHead()
+	 * removeTail() T remove(index) T At(index n)
+	 */
 }

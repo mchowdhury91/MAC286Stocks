@@ -17,26 +17,56 @@ import java.util.Date;
 public class Bar {
 
 	
-	MAC286Date date;
-	float open, high, low, close, adjClose;
-	int volume;
+	private MAC286Date date;
+	private float open, high, low, close, adjClose;
+	private int volume;
 	
-	public Bar(String str) throws ParseException {
+	public Bar(){
+		try{
+			date = new MAC286Date("2000-01-01");
+		}catch(Exception e){
+			System.out.println("default bar constructor threw parse error");
+			System.exit(1);
+		}
+		open = 0f;
+		high = 0f;
+		low = 0f;
+		close = 0f;
+		adjClose = 0f;
 		
+		volume = 0;		
+	}
+
+	public Bar(String str) throws ParseException {
+		str = str.trim();
 		String[] dataArray = str.split(",");
 		
-		date = new MAC286Date(dataArray[0]);
+		date = new MAC286Date(dataArray[0].trim());
 		
-		open = Float.parseFloat(dataArray[1]);
-		high = Float.parseFloat(dataArray[2]);
-		low = Float.parseFloat(dataArray[3]);
-		close = Float.parseFloat(dataArray[4]);
-		adjClose = Float.parseFloat(dataArray[5]);
+		open = Float.parseFloat(dataArray[1].trim());
+		high = Float.parseFloat(dataArray[2].trim());
+		low = Float.parseFloat(dataArray[3].trim());
+		close = Float.parseFloat(dataArray[4].trim());
+		adjClose = Float.parseFloat(dataArray[5].trim());
 		
-		volume = Integer.parseInt(dataArray[6]);
+		volume = Integer.parseInt(dataArray[6].trim());
 		
 	}
 
+	public void setBar(String str) throws ParseException{
+		String[] dataArray = str.split(",");
+		
+		date = new MAC286Date(dataArray[0].trim());
+		
+		open = Float.parseFloat(dataArray[1].trim());
+		high = Float.parseFloat(dataArray[2].trim());
+		low = Float.parseFloat(dataArray[3].trim());
+		close = Float.parseFloat(dataArray[4].trim());
+		adjClose = Float.parseFloat(dataArray[5].trim());
+		
+		volume = Integer.parseInt(dataArray[6].trim());		
+	}
+	
 	public MAC286Date getDate() {
 		return date;
 	}
@@ -67,6 +97,46 @@ public class Bar {
 	
 	public float getRange(){
 		return high-low;
+	}
+
+	public void setDate(MAC286Date date) {
+		this.date = date;
+	}
+
+	public void setOpen(float open) {
+		this.open = open;
+	}
+
+	public void setHigh(float high) {
+		this.high = high;
+	}
+
+	public void setLow(float low) {
+		this.low = low;
+	}
+
+	public void setClose(float close) {
+		this.close = close;
+	}
+
+	public void setAdjClose(float adjClose) {
+		this.adjClose = adjClose;
+	}
+
+	public void setVolume(int volume) {
+		this.volume = volume;
+	}
+	
+	public String toString(){
+		String str = "";
+		str += ("Date: " + this.getDate());
+		str += ("\nOpen: " + this.getOpen());
+		str += ("\nHigh: " + this.getHigh());
+		str += ("\nLow: " + this.getLow());
+		str += ("\nClose: " + this.getClose());
+		str += ("\nAdj Close: " + this.getAdjClose());
+		str += ("\nVolume: " + this.getVolume());
+		return str;
 	}
 	
 	public void display(){

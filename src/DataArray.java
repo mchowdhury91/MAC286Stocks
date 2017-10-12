@@ -80,6 +80,14 @@ public class DataArray implements Iterable<Bar>{
 		}
 	}
 	
+	public Bar remove(int index){
+		return barVector.remove(index);
+	}
+	
+	public Bar remove(){
+		return barVector.remove(0);
+	}
+	
 	public int load(){
 		try{			
 			BufferedReader in = new BufferedReader(new FileReader(path + "\\" + symbol + "_daily.csv"));
@@ -92,6 +100,7 @@ public class DataArray implements Iterable<Bar>{
 				count++;
 			}
 			
+			in.close();
 			return count;
 		}catch(FileNotFoundException e){
 			System.out.println("Nothing was loaded because " + path + "\\" + symbol + "_daily.csv was not found");

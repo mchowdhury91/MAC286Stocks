@@ -94,10 +94,10 @@ public class Trade {
 		
 		float pl = 0;
 		if(direction == Direction.LONG){
-			pl = (exitPrice * numberOfShares) - (entryPrice * numberOfShares);			
+			pl = ((exitPrice) - (entryPrice)) * numberOfShares;			
 		}else{
 			//short
-			pl = (entryPrice * numberOfShares) - (exitPrice * numberOfShares);
+			pl = ((entryPrice) - (exitPrice)) * numberOfShares;
 		}
 		
 		return pl;
@@ -156,6 +156,10 @@ public class Trade {
 		this.numberOfShares = numberOfShares;
 	}
 	
+	public String toString(){
+		//TODO: toString
+		return "";
+	}
 	
 	
 }

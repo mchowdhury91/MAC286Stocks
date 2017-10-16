@@ -1,0 +1,17 @@
+numTrades: 103
+numLongTrades: 72
+numShortTrades: 31
+numWinners: 52
+numLosers: 51
+numLongWinners: 39
+numLongLosers: 33
+numShortWinners: 13
+numShortLosers: 18
+averagePL: -343.24624764282726
+averageLongPL: 241.08378069351116
+averageShortPL: -1700.3998618433552
+maxPL: 4232.2353515625
+minPL: -45055.5703125
+mFile: test.txt
+mPath: ./
+tradeArray: TradeArray@232204a1

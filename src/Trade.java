@@ -18,6 +18,13 @@ setters and getters
 
 Method to return profit or loss float PL(); negative for a loss and positive for a win.  
  */
+
+
+/*
+ * Dependencies:
+ * Direction.java
+ * MAC286Date
+ */
 public class Trade {
 
 	Direction direction;

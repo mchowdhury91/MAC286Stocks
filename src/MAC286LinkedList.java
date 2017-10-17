@@ -50,7 +50,6 @@ public class MAC286LinkedList<T> {
 	}
 
 	public void insert(T t, int index) {
-		// TODO: Finish insert
 		// if inserting at head
 		if (index == 0) {
 			head = new MAC286Node<T>(t, head);
@@ -83,8 +82,8 @@ public class MAC286LinkedList<T> {
 		return size;
 	}
 
-	public boolean isEmpty() { // TODO finish isEmpty()
-		return false;
+	public boolean isEmpty() {
+		return (head == null);
 	}
 
 	/**

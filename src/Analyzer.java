@@ -20,6 +20,18 @@ public class Analyzer {
 		
 		return true;
 	}
+
+	public boolean sixtyDayLow(int t, Vector<Bar> barList){
+		
+		float min = barList.get(t).getLow();
+		for(int i = t-1; i >= 0; i--){
+			if(barList.get(i).getLow() <= min){
+				return false;
+			}
+		}
+		
+		return true;
+	}	
 	
 	public boolean largest5DayRange(int t, Vector<Bar> barList){
 		

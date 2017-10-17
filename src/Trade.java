@@ -30,7 +30,7 @@ public class Trade {
 	Direction direction;
 	
 	private MAC286Date entryDate, exitDate;
-	private float entryPrice, exitPrice;
+	private float entryPrice, exitPrice, stopLoss, target;
 	private int numberOfShares;
 	private boolean on;
 	
@@ -44,6 +44,7 @@ public class Trade {
 	public Trade(int numberOfShares, 
 			     float entryPrice, MAC286Date entryDate,
 			     float exitPrice, MAC286Date exitDate,
+			     float stopLoss, float target,
 			     Direction direction){
 		
 		this.numberOfShares = numberOfShares;
@@ -53,6 +54,9 @@ public class Trade {
 		
 		this.exitDate = exitDate;
 		this.exitPrice = exitPrice;
+		
+		this.stopLoss = stopLoss;
+		this.target = target;
 		
 		this.direction = direction;
 		on = false;
@@ -161,6 +165,22 @@ public class Trade {
 	}
 	public void setNumberOfShares(int numberOfShares) {
 		this.numberOfShares = numberOfShares;
+	}
+	
+	public void setStopLoss(float stopLoss){
+		this.stopLoss = stopLoss;
+	}
+	
+	public void setTarget(float target){
+		this.target = target;
+	}
+	
+	public float getStopLoss(){
+		return stopLoss;
+	}
+	
+	public float getTarget(){
+		return target;
 	}
 	
 	public String toString(){

@@ -18,23 +18,30 @@ public class DataArrayTester {
 		
 		// do not modify any of the below
 		Downloader downloader = new Downloader();
-		downloader.downloadHistoricalData("GOOGL", date1Str, date2Str, "GOOGL_daily.csv");
+		downloader.downloadHistoricalData("^DJI", date1Str, date2Str, "^DJI_daily.csv");
 		
-		DataArray dA = new DataArray("GOOGL", ".");
+		DataArray dA = new DataArray("^DJI", ".");
 		
 		dA.load();
 		
 		int count = 0;
 		
 		Analyzer analyzer = new Analyzer();
-		for(int i = 59; i < dA.getSize(); i++){
-			Vector<Bar> barV = dA.getBarVector();
+		Vector<Bar> barV = dA.getBarVector();
+		for(int i = 59; i < barV.size(); i++){
 			if(analyzer.outsideDay(i, barV)
 					&& analyzer.sixtyDayHigh(i, barV)
-					&& analyzer.largest5DayRange(i, barV)){
+					&& analyzer.largest5DayRange(i, barV)
+					&& barV.get(i).getOpen() >= 30){
+				
 				count++;
 				barV.get(i).display();
 				System.out.println("------------------------\n");
+				
+				for(int j = i+1; j < barV.size(); j++){
+					
+				}
+				
 			}
 		}
 		

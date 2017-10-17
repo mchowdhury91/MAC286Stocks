@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Vector;
 
 /*
  * Dependencies:
@@ -12,8 +13,8 @@ public class DataArrayTester {
 	public static void main(String[] args) throws IOException, ParseException{
 		
 		// modify the following variables to change the dates
-		String date1Str = "2017-07-30";
-		String date2Str = "2017-08-30";
+		String date1Str = "2007-10-16";
+		String date2Str = "2017-10-16";
 		
 		// do not modify any of the below
 		Downloader downloader = new Downloader();
@@ -24,11 +25,19 @@ public class DataArrayTester {
 		dA.load();
 		
 		int count = 0;
-		for(Bar b: dA){
-			count++;
-			System.out.println("Bar " + count + ": ");
-			b.display();
-			System.out.println("--------------");
+		
+		Analyzer analyzer = new Analyzer();
+		for(int i = 59; i < dA.getSize(); i++){
+			Vector<Bar> barV = dA.getBarVector();
+			if(analyzer.outsideDay(i, barV)
+					&& analyzer.sixtyDayHigh(i, barV)
+					&& analyzer.largest5DayRange(i, barV)){
+				count++;
+				barV.get(i).display();
+				System.out.println("------------------------\n");
+			}
 		}
+		
+		System.out.println(count + " days meet the pattern requirements");
 	}
 }

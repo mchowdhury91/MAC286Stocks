@@ -80,7 +80,7 @@ public class Downloader {
 		return unicodeDecode(crumb);
 	}
 	
-	private void downloadData(String urlStr, String cookie, String filename) throws IOException{
+	private void downloadData(String urlStr, String cookie, String path, String filename) throws IOException{
 		InputStream is = null;
 		FileOutputStream fos = null;
 		
@@ -90,7 +90,7 @@ public class Downloader {
 			urlConn.setRequestProperty("Cookie", cookie);
 //			System.out.println(cookie);
 			is = urlConn.getInputStream();
-			fos = new FileOutputStream(filename);
+			fos = new FileOutputStream(path + "/" + filename);
 			
 			byte[] buffer = new byte[4096];
 			int len;
@@ -98,7 +98,10 @@ public class Downloader {
 			while((len = is.read(buffer)) > 0){
 				fos.write(buffer, 0, len);
 			}
-		} finally {
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		finally {
 			try{
 				if(is != null){
 					is.close();
@@ -120,7 +123,7 @@ public class Downloader {
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	public void downloadHistoricalData(String symbol, String start, String end, String filename) throws IOException, ParseException{
+	public void downloadHistoricalData(String symbol, String start, String end, String path, String filename) throws IOException, ParseException{
 		
 		// getting cookie and crumb
 		String urlStr = String.format("https://finance.yahoo.com/quote/%s/history", symbol);
@@ -164,7 +167,7 @@ public class Downloader {
 		
 		System.out.println(urlStr2);
 		
-		downloadData(urlStr2, cookie, filename);
+		downloadData(urlStr2, cookie, path, filename);
 	}
 
 	

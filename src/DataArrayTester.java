@@ -18,9 +18,9 @@ public class DataArrayTester {
 		
 		// do not modify any of the below
 		Downloader downloader = new Downloader();
-		downloader.downloadHistoricalData("^DJI", date1Str, date2Str, "^DJI_daily.csv");
+		downloader.downloadHistoricalData("DIA", date1Str, date2Str, ".", "DIA_daily.csv");
 		
-		DataArray dA = new DataArray("^DJI", ".");
+		DataArray dA = new DataArray("DJI", ".");
 		
 		dA.load();
 		

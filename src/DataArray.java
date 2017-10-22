@@ -90,7 +90,7 @@ public class DataArray implements Iterable<Bar>{
 	
 	public int load(){
 		try{			
-			BufferedReader in = new BufferedReader(new FileReader(path + "\\" + symbol + "_daily.csv"));
+			BufferedReader in = new BufferedReader(new FileReader(path + "/" + symbol + ".csv"));
 			in.readLine();
 			
 			int count = 0;
@@ -103,7 +103,7 @@ public class DataArray implements Iterable<Bar>{
 			in.close();
 			return count;
 		}catch(FileNotFoundException e){
-			System.out.println("Nothing was loaded because " + path + "\\" + symbol + "_daily.csv was not found");
+			System.out.println("Nothing was loaded because " + path + "/" + symbol + "_daily.csv was not found");
 			e.printStackTrace();
 			return 0;			
 		}

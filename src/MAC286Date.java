@@ -80,6 +80,7 @@ public class MAC286Date implements Comparable<MAC286Date>{
 		
 	}
 	
+	@Override
 	public String toString(){
 		int month = getMonth();
 		String str;

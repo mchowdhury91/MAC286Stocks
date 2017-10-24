@@ -1,7 +1,3 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.Vector;
 
 public class Analyzer {
@@ -9,8 +5,9 @@ public class Analyzer {
 	public Analyzer() {
 	}
 	
-	public boolean sixtyDayHigh(int t, Vector<Bar> barList){
+	public boolean sixtyDayHigh(int t, DataArray dataArray){
 		
+		Vector<Bar> barList = dataArray.getBarVector();
 		float max = barList.get(t).getHigh();
 		for(int i = t-1; i >= 0; i--){
 			if(barList.get(i).getHigh() >= max){
@@ -21,7 +18,9 @@ public class Analyzer {
 		return true;
 	}
 
-	public boolean sixtyDayLow(int t, Vector<Bar> barList){
+	public boolean sixtyDayLow(int t, DataArray dataArray){
+		
+		Vector<Bar> barList = dataArray.getBarVector();
 		
 		float min = barList.get(t).getLow();
 		for(int i = t-1; i >= 0; i--){
@@ -33,7 +32,9 @@ public class Analyzer {
 		return true;
 	}	
 	
-	public boolean largest5DayRange(int t, Vector<Bar> barList){
+	public boolean largest5DayRange(int t, DataArray dataArray){
+		
+		Vector<Bar> barList = dataArray.getBarVector();
 		
 		float max = barList.get(t).getRange();
 		for(int i = t-1; i >= t-4; i--){
@@ -45,19 +46,19 @@ public class Analyzer {
 		return true;
 	}
 	
-	public boolean tradesUnderYesterdaysLow(int t, Vector<Bar> barList){
-		
+	public boolean tradesUnderYesterdaysLow(int t, DataArray dataArray){
+		Vector<Bar> barList = dataArray.getBarVector();
 		return (barList.get(t).getLow() < barList.get(t-1).getLow());
 		
 	}
 
-	public boolean tradesOverYesterdaysHigh(int t, Vector<Bar> barList){
-		
+	public boolean tradesOverYesterdaysHigh(int t, DataArray dataArray){
+		Vector<Bar> barList = dataArray.getBarVector();
 		return (barList.get(t).getHigh() > barList.get(t-1).getHigh());
 	}	
 	
-	public boolean outsideDay(int t, Vector<Bar> barList){
-		return (tradesOverYesterdaysHigh(t, barList) && tradesUnderYesterdaysLow(t, barList));
+	public boolean outsideDay(int t, DataArray dataArray){
+		return (tradesOverYesterdaysHigh(t, dataArray) && tradesUnderYesterdaysLow(t, dataArray));
 	}
 
 }

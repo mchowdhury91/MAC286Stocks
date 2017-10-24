@@ -2,10 +2,12 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.text.DecimalFormat;
 public class Stats {
 	private int numTrades, numLongTrades, numShortTrades, numWinners, numLosers;
 	private int numLongWinners, numLongLosers, numShortWinners, numShortLosers;
 	private double averagePL, averageLongPL, averageShortPL, maxPL, minPL;
+	private float stopLoss, target;
 	String mFile, mPath;
 	
 	private TradeArray tradeArray;
@@ -27,7 +29,7 @@ public class Stats {
 
 	public Stats(TradeArray tradeArray) {
 		mFile = "test.txt";
-		mPath = "./";
+		mPath = ".";
 		numTrades= numLongTrades= numShortTrades= numWinners= numLosers= 0;
 		numLongWinners= numLongLosers= numShortWinners= numShortLosers= 0;
 		averagePL= averageLongPL= averageShortPL= maxPL= minPL = 0;
@@ -35,14 +37,22 @@ public class Stats {
 		this.tradeArray = tradeArray;
 	}
 	
+	@Override
 	public String toString() {
 		//You print all these!!!!
 		String str = new String();
+		DecimalFormat df = new DecimalFormat("##.##");
 		
 		for(Field field : getClass().getDeclaredFields()){
+			if(field.getName() == "mPath" ||
+					field.getName() == "tradeArray" ||
+					field.getName() == "mFile"){
+				continue;
+			}
+			
 			str += field.getName() + ": ";
 			try {
-				str += field.get(this);
+				str += df.format(field.get(this));
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
@@ -66,6 +76,9 @@ public class Stats {
 		
 		minPL = Double.MAX_VALUE;
 		maxPL = Double.MIN_VALUE;
+		
+		stopLoss = tradeArray.getVector().get(0).getStopLoss();
+		target = tradeArray.getVector().get(0).getTarget();
 		
 		for(Trade t : tradeArray){
 			
@@ -117,7 +130,7 @@ public class Stats {
 		//open the file as a bufferedWriter 
 		BufferedWriter bW;
 		try {
-			bW = new BufferedWriter(new FileWriter(mPath + mFile));
+			bW = new BufferedWriter(new FileWriter(mPath + "/" + mFile));
 		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
@@ -133,4 +146,80 @@ public class Stats {
 		
 		return true;
 	}
+
+	public int getNumTrades() {
+		return numTrades;
+	}
+
+	public int getNumLongTrades() {
+		return numLongTrades;
+	}
+
+	public int getNumShortTrades() {
+		return numShortTrades;
+	}
+
+	public int getNumWinners() {
+		return numWinners;
+	}
+
+	public int getNumLosers() {
+		return numLosers;
+	}
+
+	public int getNumLongWinners() {
+		return numLongWinners;
+	}
+
+	public int getNumLongLosers() {
+		return numLongLosers;
+	}
+
+	public int getNumShortWinners() {
+		return numShortWinners;
+	}
+
+	public int getNumShortLosers() {
+		return numShortLosers;
+	}
+
+	public double getAveragePL() {
+		return averagePL;
+	}
+
+	public double getAverageLongPL() {
+		return averageLongPL;
+	}
+
+	public double getAverageShortPL() {
+		return averageShortPL;
+	}
+
+	public double getMaxPL() {
+		return maxPL;
+	}
+
+	public double getMinPL() {
+		return minPL;
+	}
+
+	public String getmFile() {
+		return mFile;
+	}
+
+	public String getmPath() {
+		return mPath;
+	}
+
+	public TradeArray getTradeArray() {
+		return tradeArray;
+	}
+	public float getStopLoss(){
+		return stopLoss;
+	}
+	public float getTarget(){
+		return target;
+	}
+
+
 }

@@ -27,8 +27,8 @@ public class DataArrayTester {
 		int count = 0;
 		
 		Analyzer analyzer = new Analyzer();
-		Vector<Bar> barV = dA.getBarVector();
-		for(int i = 59; i < barV.size(); i++){
+		DataArray barV = dA;
+		for(int i = 59; i < barV.getSize(); i++){
 			if(analyzer.outsideDay(i, barV)
 					&& analyzer.sixtyDayHigh(i, barV)
 					&& analyzer.largest5DayRange(i, barV)
@@ -38,7 +38,7 @@ public class DataArrayTester {
 				barV.get(i).display();
 				System.out.println("------------------------\n");
 				
-				for(int j = i+1; j < barV.size(); j++){
+				for(int j = i+1; j < barV.getSize(); j++){
 					
 				}
 				

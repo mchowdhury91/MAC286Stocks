@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.text.ParseException;
 
 /*
@@ -88,13 +89,22 @@ public class Trade {
 		this.direction = direction;	
 	}
 	
+	/**
+	 * 
+	 * @param entryDate
+	 * @param entryPrice
+	 * @param direction
+	 */
 	public Trade(MAC286Date entryDate, float entryPrice, Direction direction){
 		numberOfShares = 1;
 		this.entryPrice = entryPrice;
 		this.entryDate = entryDate;
 		
 		on = true;
-		this.direction = direction;			
+		this.direction = direction;		
+		
+		exitPrice = 0f;
+		exitDate = null;
 	}
 	
 	public float PL(){
@@ -183,9 +193,30 @@ public class Trade {
 		return target;
 	}
 	
+	public boolean close(){
+		
+		if(exitPrice > 0f && exitDate != null){
+			on = false;
+			return true;
+		}else{
+			System.out.println("exitPrice or exitDate not set, can't close trade");
+			return false;
+		}
+		
+	}
+	
+	@Override
 	public String toString(){
-		//TODO: toString
-		return "";
+		DecimalFormat df = new DecimalFormat("##.##");
+		
+		String string = "";
+		string += "Direction: " + direction;
+		string += "\nentryDate: " + entryDate;
+		string += "\nentryPrice: " + entryPrice;
+		string += "\nexitDate: " + exitDate;
+		string += "\nexitPrice: " + exitPrice;
+		string += "\nPL: " + df.format(percentPL());
+		return string;
 	}
 	
 	

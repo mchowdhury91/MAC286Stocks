@@ -1,0 +1,16 @@
+numTrades: 316
+numLongTrades: 248
+numShortTrades: 68
+numWinners: 61
+numLosers: 255
+numLongWinners: 45
+numLongLosers: 203
+numShortWinners: 16
+numShortLosers: 52
+averagePL: 0.34
+averageLongPL: 0.21
+averageShortPL: 0.82
+maxPL: 10
+minPL: -2
+stopLoss: 2
+target: 10

@@ -1,0 +1,85 @@
+StopLoss: 2.0 Target: 2.0
+AveragePL: 0.03797456923919388
+AverageLongPL: 0.08064492960130015
+AverageShortPL: -0.11764674502260544
+--------------------
+StopLoss: 2.0 Target: 4.0
+AveragePL: 0.07594983826709699
+AverageLongPL: -0.008064570926850843
+AverageShortPL: 0.38235533062149496
+--------------------
+StopLoss: 2.0 Target: 5.0
+AveragePL: 0.10759535884555382
+AverageLongPL: -0.04838705639685354
+AverageShortPL: 0.6764724026708042
+--------------------
+StopLoss: 2.0 Target: 10.0
+AveragePL: 0.3417741712890094
+AverageLongPL: 0.20967923921923484
+AverageShortPL: 0.8235321588375989
+--------------------
+StopLoss: 4.0 Target: 2.0
+AveragePL: -0.13924206812170487
+AverageLongPL: -0.04838918485949116
+AverageShortPL: -0.470587877666249
+--------------------
+StopLoss: 4.0 Target: 4.0
+AveragePL: -0.0886089892327031
+AverageLongPL: -0.17742205915912504
+AverageShortPL: 0.23529750108718872
+--------------------
+StopLoss: 4.0 Target: 5.0
+AveragePL: -0.1202548757384095
+AverageLongPL: -0.29032545608858906
+AverageShortPL: 0.5000025349504807
+--------------------
+StopLoss: 4.0 Target: 10.0
+AveragePL: 0.4303802772413326
+AverageLongPL: 0.40322537287589044
+AverageShortPL: 0.5294158108094159
+--------------------
+StopLoss: 5.0 Target: 2.0
+AveragePL: -0.2126999298731486
+AverageLongPL: -0.10484064682837456
+AverageShortPL: -0.611940261143357
+--------------------
+StopLoss: 5.0 Target: 4.0
+AveragePL: -0.17777922645447747
+AverageLongPL: -0.25403494508035723
+AverageShortPL: 0.10448074696668938
+--------------------
+StopLoss: 5.0 Target: 5.0
+AveragePL: -0.12698600557115342
+AverageLongPL: -0.2620997832667443
+AverageShortPL: 0.37313663425730237
+--------------------
+StopLoss: 5.0 Target: 10.0
+AveragePL: 0.44444518013605994
+AverageLongPL: 0.40322566416955763
+AverageShortPL: 0.5970189108777402
+--------------------
+StopLoss: 10.0 Target: 2.0
+AveragePL: -0.18412905647641137
+AverageLongPL: 0.1935464230275923
+AverageShortPL: -1.5820920253867534
+--------------------
+StopLoss: 10.0 Target: 4.0
+AveragePL: 0.0698388864123632
+AverageLongPL: 0.3064484115569822
+AverageShortPL: -0.8059695051677191
+--------------------
+StopLoss: 10.0 Target: 5.0
+AveragePL: -0.03174920914665101
+AverageLongPL: 0.18144778474684684
+AverageShortPL: -0.8208962910210909
+--------------------
+StopLoss: 10.0 Target: 10.0
+AveragePL: 0.6984130011664497
+AverageLongPL: 1.0080649929661905
+AverageShortPL: -0.44776153564453125
+--------------------
+Best AveragePL: 0.6984130011664497, from S: 10.0, T: 10.0
+Worst AveragePL: -0.2126999298731486, from S: 5.0, T: 2.0
+Best AverageLongPL: 1.0080649929661905
+Best AverageShortPL: 0.8235321588375989
+Best Win Ratio: 0.8126984, from S: 10.0, T: 2.0

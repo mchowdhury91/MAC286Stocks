@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,10 +19,21 @@ public class DataArray implements Iterable<Bar>{
 	private String symbol;
 	private String path;
 	
+	/**
+	 * 
+	 * @param symbol
+	 * @param path
+	 */
 	public DataArray(String symbol, String path){
 		barVector = new Vector<Bar>(1000,100);
 		this.symbol = symbol;
 		this.path = path;
+	}
+	
+	public DataArray(){
+		symbol = "";
+		path = "";
+		barVector = new Vector<Bar>(1000,100);
 	}
 	
 	public String getSymbol(){ return symbol; }
@@ -103,7 +115,7 @@ public class DataArray implements Iterable<Bar>{
 			in.close();
 			return count;
 		}catch(FileNotFoundException e){
-			System.out.println("Nothing was loaded because " + path + "/" + symbol + "_daily.csv was not found");
+			System.out.println("Nothing was loaded because " + path + "/" + symbol + ".csv was not found");
 			e.printStackTrace();
 			return 0;			
 		}
@@ -118,6 +130,39 @@ public class DataArray implements Iterable<Bar>{
 		}		
 	}
 
+	public int load(File dateFile){
+		try{			
+			BufferedReader in = new BufferedReader(new FileReader(dateFile));
+			in.readLine();
+			
+			int count = 0;
+			String line = null;
+			while((line = in.readLine()) != null){
+				barVector.add(new Bar(line));
+				count++;
+			}
+			
+			in.close();
+			return count;
+		}catch(FileNotFoundException e){
+			e.printStackTrace();
+			return 0;			
+		}
+		catch(IOException e){
+			System.out.println("Nothing was loaded because of an IOException");
+			e.printStackTrace();
+			return 0;
+		} catch (ParseException e) {
+			System.out.println("Nothing was loaded because of a ParseException");
+			e.printStackTrace();
+			return 0;
+		}		
+	}	
+	
+	public int size(){
+		return getSize();
+	}
+	
 	@Override
 	public Iterator<Bar> iterator() {
 		return barVector.iterator();

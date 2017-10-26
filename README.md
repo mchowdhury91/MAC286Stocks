@@ -11,3 +11,8 @@ DownloadAll just utilizes Downloader to grab 11 years (2006-01-01 to 2016-12-31)
 BigMain runs the simulations against all .csv files in the Data folder and then outputs some statistics to the Stats folder.
 
 There is still a lot of cleaning up to do on this project.
+
+#EXECUTION INSTRUCTIONS:
+1. Compile/run DownloadAll
+2. Then compile/run BigMain
+3. Stats are logged to the Stats folder

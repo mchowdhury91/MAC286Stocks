@@ -91,7 +91,7 @@ public class Simulator {
 			if(analyzer.sixtyDayHigh(i, dataArray)
 					&& analyzer.outsideDay(i, dataArray)
 					&& analyzer.largest5DayRange(i, dataArray)
-					&& bar.getOpen() >= 30){
+					){
 				
 				int nextDay = i+1;
 				if(nextDay >= dataArray.getSize() || nextDay+1 >= dataArray.getSize()){
@@ -137,8 +137,7 @@ public class Simulator {
 				System.out.println();
 			}else if(analyzer.sixtyDayLow(i, dataArray)
 					&& analyzer.outsideDay(i, dataArray)
-					&& analyzer.largest5DayRange(i, dataArray)
-					&& bar.getOpen() >= 30){
+					&& analyzer.largest5DayRange(i, dataArray)){
 				
 				// SHORT
 				int nextDay = i+1;

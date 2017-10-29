@@ -33,15 +33,19 @@ public class Trade {
 	private MAC286Date entryDate, exitDate;
 	private float entryPrice, exitPrice, stopLoss, target;
 	private int numberOfShares;
+	private int holdingPeriod;
 	private boolean on;
 	
+	/***************** Constructors *******************/
+	//incomplete trade
 	public Trade(){
 		this.numberOfShares = 1;
-		
+		holdingPeriod = 0;
 		direction = Direction.LONG;
 		on = true;
 	}
 	
+	// complete trade, will be closed
 	public Trade(int numberOfShares, 
 			     float entryPrice, MAC286Date entryDate,
 			     float exitPrice, MAC286Date exitDate,
@@ -61,8 +65,10 @@ public class Trade {
 		
 		this.direction = direction;
 		on = false;
+		holdingPeriod = Math.abs(entryDate.daysBetween(exitDate));
 	}
 	
+	// incomplete trade
 	public Trade(int numberOfShares){
 		this.numberOfShares = numberOfShares;
 		
@@ -76,8 +82,11 @@ public class Trade {
 		
 		direction = Direction.LONG;
 		on = true;
+		
+		holdingPeriod = 0;
 	}
 	
+	// incomplete trade
 	public Trade(int numberOfShares, Direction direction){
 		this.numberOfShares = numberOfShares;
 		
@@ -87,6 +96,7 @@ public class Trade {
 		
 		on = true;
 		this.direction = direction;	
+		holdingPeriod = 0;
 	}
 	
 	/**
@@ -99,14 +109,18 @@ public class Trade {
 		numberOfShares = 1;
 		this.entryPrice = entryPrice;
 		this.entryDate = entryDate;
+
+		exitPrice = 0f;
+		exitDate = null;
+		holdingPeriod = 0;
 		
 		on = true;
 		this.direction = direction;		
 		
-		exitPrice = 0f;
-		exitDate = null;
 	}
 	
+	
+	/****************** Special Functions ********************/
 	public float PL(){
 		if(on){
 			// trade not closed
@@ -138,8 +152,19 @@ public class Trade {
 			return ((totalEntryPrice - totalExitPrice)/(totalEntryPrice))*100;
 		}
 	}
+
+	public boolean close(){
+		if(exitPrice > 0f && exitDate != null){
+			on = false;
+			holdingPeriod = Math.abs(entryDate.daysBetween(exitDate));
+			return true;
+		}else{
+			System.out.println("exitPrice or exitDate not set, can't close trade");
+			return false;
+		}
+	}	
 	
-	
+	/************************* Getters and Setters ***************************/
 	public Direction getDirection() {
 		return direction;
 	}
@@ -193,17 +218,11 @@ public class Trade {
 		return target;
 	}
 	
-	public boolean close(){
-		
-		if(exitPrice > 0f && exitDate != null){
-			on = false;
-			return true;
-		}else{
-			System.out.println("exitPrice or exitDate not set, can't close trade");
-			return false;
-		}
-		
+	public int getHoldingPeriod(){
+		return holdingPeriod;
 	}
+	
+	/*********************** Overrides **************************************/
 	
 	@Override
 	public String toString(){

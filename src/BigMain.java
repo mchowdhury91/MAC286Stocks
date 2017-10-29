@@ -15,9 +15,9 @@ public class BigMain {
 		if(directory.exists() && directory.isDirectory()){
 			File[] directoryListing = directory.listFiles();
 			if(directoryListing != null){
-				float[] stop = { 2f, 4f, 5f, 10f };
-				float[] target = { 2f, 4f, 5f, 10f };
-				Stats[] statList = new Stats[stop.length * target.length];
+				float[] stopLossValues = { 2f, 4f, 5f, 10f };
+				float[] targetValues = { 2f, 4f, 5f, 10f };
+				Stats[] statList = new Stats[stopLossValues.length * targetValues.length];
 				
 				int listIndex = 0;
 				Simulator simulator = new Simulator();
@@ -27,8 +27,8 @@ public class BigMain {
 					statsDir.mkdir();
 				}
 				
-				for(float s : stop){
-					for(float t : target){
+				for(float s : stopLossValues){
+					for(float t : targetValues){
 						TradeArray tradeArray = new TradeArray();
 						
 						for(File child : directoryListing){
@@ -66,7 +66,10 @@ public class BigMain {
 					bW.write("AveragePL: " + s.getAveragePL() + "\r\n");
 					bW.write("AverageLongPL: " + s.getAverageLongPL() + "\r\n");
 					bW.write("AverageShortPL: " + s.getAverageShortPL() + "\r\n");
-					bW.write("--------------------\r\n");
+					bW.write("Win Loss Ratio: " + (float)s.getNumWinners() / (float) s.getNumLosers() + "\r\n");
+					
+					bW.write("Average Holding Period: " + s.getAvgHoldingPeriod() + "\r\n");
+					bW.write("--------------------\r\n\r\n");
 					
 					if(s.getAveragePL() > maxAvgPL){
 						maxAvgPL = s.getAveragePL();
@@ -98,9 +101,9 @@ public class BigMain {
 				
 				bW.write("Best AveragePL: " + maxAvgPL + ", from S: " + bestStop + ", T: " + bestTarget + "\r\n");
 				bW.write("Worst AveragePL: " + minAvgPL + ", from S: " + worstStop + ", T: " + worstTarget + "\r\n");
-				bW.write("Best AverageLongPL: " + maxAvgLongPL + "\r\n");
-				bW.write("Best AverageShortPL: " + maxAvgShortPL + "\r\n");
-				bW.write("Best Win Ratio: " + winRatio + ", from S: " + bestWinStop + ", T: " + bestWinTarget + "\r\n");
+//				bW.write("Best AverageLongPL: " + maxAvgLongPL + "\r\n");
+//				bW.write("Best AverageShortPL: " + maxAvgShortPL + "\r\n");
+//				bW.write("Best Win Ratio: " + winRatio + ", from S: " + bestWinStop + ", T: " + bestWinTarget + "\r\n");
 				bW.close();
 			}else{
 				System.out.println("No files in " + directory.getAbsolutePath() + ". Exiting.");

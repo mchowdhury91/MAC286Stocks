@@ -6,6 +6,8 @@ import java.text.DecimalFormat;
 public class Stats {
 	private int numTrades, numLongTrades, numShortTrades, numWinners, numLosers;
 	private int numLongWinners, numLongLosers, numShortWinners, numShortLosers;
+	private int maxHoldingPeriod, minHoldingPeriod;
+	private float avgHoldingPeriod;
 	private double averagePL, averageLongPL, averageShortPL, maxPL, minPL;
 	private float stopLoss, target;
 	String mFile, mPath;
@@ -66,13 +68,16 @@ public class Stats {
 	}
 	
 	public void calculateStats(){
-		
 
 		numLongTrades= numShortTrades= numWinners= numLosers= 0;
 		numLongWinners= numLongLosers= numShortWinners= numShortLosers= 0;
-		averagePL= averageLongPL= averageShortPL;
+		averagePL= averageLongPL= averageShortPL = 0;
+		avgHoldingPeriod = 0;
 		
 		numTrades = tradeArray.size();
+		
+		minHoldingPeriod = Integer.MAX_VALUE;
+		maxHoldingPeriod = Integer.MIN_VALUE;
 		
 		minPL = Double.MAX_VALUE;
 		maxPL = Double.MIN_VALUE;
@@ -83,7 +88,6 @@ public class Stats {
 		for(Trade t : tradeArray){
 			
 			double tempPL = t.percentPL();
-			
 			if(t.getDirection() == Direction.LONG){
 				// long trade
 				numLongTrades++;
@@ -115,6 +119,14 @@ public class Stats {
 			if(tempPL < minPL){
 				minPL = tempPL;
 			}
+			
+			avgHoldingPeriod += t.getHoldingPeriod();
+			if(t.getHoldingPeriod() > maxHoldingPeriod)
+				maxHoldingPeriod = t.getHoldingPeriod();
+			
+			if(t.getHoldingPeriod() < minHoldingPeriod)
+				minHoldingPeriod = t.getHoldingPeriod();	
+			
 		}
 		
 		numWinners = numLongWinners + numShortWinners;
@@ -124,6 +136,11 @@ public class Stats {
 		averageLongPL /= numLongTrades;
 		averageShortPL /= numShortTrades;
 		
+		avgHoldingPeriod /= numTrades;
+	}
+	
+	public float getAvgHoldingPeriod(){
+		return avgHoldingPeriod;
 	}
 	
 	public boolean printToFile() {

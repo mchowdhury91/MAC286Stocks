@@ -9,6 +9,24 @@ public class Analyzer {
 		
 		Vector<Bar> barList = dataArray.getBarVector();
 		float max = barList.get(t).getHigh();
+		for(int i = t-1; i >= t-59; i--){
+			if(barList.get(i).getHigh() >= max){
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	public boolean nDayHigh(int t, DataArray dataArray, int n){
+		
+		if(t < (n-1)){
+			System.out.println("For nDayHigh, your initial day must be greater than n-1");
+			return false;
+		}
+		
+		Vector<Bar> barList = dataArray.getBarVector();
+		float max = barList.get(t).getHigh();
 		for(int i = t-1; i >= 0; i--){
 			if(barList.get(i).getHigh() >= max){
 				return false;

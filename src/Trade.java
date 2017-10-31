@@ -46,6 +46,12 @@ public class Trade {
 		direction = Direction.LONG;
 		on = true;
 		symbol = "";
+		exitDate = null;
+		entryDate = null;
+		entryPrice = 0f;
+		exitPrice = 0f;
+		stopLoss = 0f;
+		target = 0f;
 	}
 	
 	// complete trade, will be closed
@@ -132,6 +138,7 @@ public class Trade {
 	public float PL(){
 		if(on){
 			// trade not closed
+			System.out.println("Trade was not closed");
 			return 0f;
 		}
 		

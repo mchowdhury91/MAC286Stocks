@@ -85,7 +85,7 @@ public class Simulator {
 
 	}		
 	
-	private TradeArray processData(DataArray dataArray, float stop, float target){
+	protected TradeArray processData(DataArray dataArray, float stop, float target){
 		
 		tradeArray = new TradeArray();
 		

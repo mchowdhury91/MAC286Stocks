@@ -121,7 +121,12 @@ public class CustomSimulator extends Simulator{
 				float targetPrice = trade.getEntryPrice() * (1f - trade.getTarget() / 100f);
 				
 				// loop to check when to sell
-				for(int j = nextDay+1; j < dataArray.getSize(); j++){
+				for(int j = nextDay+1; j < nextDay + 1 + daysToSellAfter; j++){
+					
+					if(j >= dataArray.size()){
+						break;
+					}
+					
 					Bar exitBar = dataArray.get(j);
 					
 					if(exitBar.getHigh() >= stopPrice){
@@ -143,6 +148,15 @@ public class CustomSimulator extends Simulator{
 						trade.setExitPrice(trade.getEntryPrice());
 						break;
 					}
+				}
+				
+				if(trade.getExitDate() == null && 
+						(nextDay + 1 + daysToSellAfter) < dataArray.size()){
+					// day limit reached, need to exit at 5th day price
+					Bar exitBar = dataArray.get(nextDay + 1 + daysToSellAfter);
+					
+					trade.setExitDate(exitBar.getDate());
+					trade.setExitPrice(exitBar.getClose());
 				}
 				
 				trade.close();

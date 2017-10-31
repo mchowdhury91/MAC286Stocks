@@ -7,12 +7,12 @@ numLongWinners: 473
 numLongLosers: 441
 numShortWinners: 63
 numShortLosers: 69
-maxHoldingPeriod: 28
+maxHoldingPeriod: 19
 minHoldingPeriod: 1
-avgHoldingPeriod: 5.05
+avgHoldingPeriod: 5.04
 averagePL: 0.02
 averageLongPL: 0.03
-averageShortPL: -0.09
+averageShortPL: -0.08
 maxPL: 2
 minPL: -2
 stopLoss: 2

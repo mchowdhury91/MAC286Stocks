@@ -36,6 +36,8 @@ public class Trade {
 	private int holdingPeriod;
 	private boolean on;
 	
+	private String symbol;
+	
 	/***************** Constructors *******************/
 	//incomplete trade
 	public Trade(){
@@ -43,6 +45,7 @@ public class Trade {
 		holdingPeriod = 0;
 		direction = Direction.LONG;
 		on = true;
+		symbol = "";
 	}
 	
 	// complete trade, will be closed
@@ -50,7 +53,8 @@ public class Trade {
 			     float entryPrice, MAC286Date entryDate,
 			     float exitPrice, MAC286Date exitDate,
 			     float stopLoss, float target,
-			     Direction direction){
+			     Direction direction,
+			     String symbol){
 		
 		this.numberOfShares = numberOfShares;
 		
@@ -66,6 +70,7 @@ public class Trade {
 		this.direction = direction;
 		on = false;
 		holdingPeriod = Math.abs(entryDate.daysBetween(exitDate));
+		this.symbol = symbol;
 	}
 	
 	// incomplete trade
@@ -84,6 +89,7 @@ public class Trade {
 		on = true;
 		
 		holdingPeriod = 0;
+		symbol = "";
 	}
 	
 	// incomplete trade
@@ -97,6 +103,7 @@ public class Trade {
 		on = true;
 		this.direction = direction;	
 		holdingPeriod = 0;
+		symbol = "";
 	}
 	
 	/**
@@ -116,6 +123,7 @@ public class Trade {
 		
 		on = true;
 		this.direction = direction;		
+		symbol = "";
 		
 	}
 	
@@ -154,6 +162,12 @@ public class Trade {
 	}
 
 	public boolean close(){
+		if(symbol == "" || symbol == null){
+			on = true;
+			System.out.println("Set the symbol for this trade before closing!");
+			return false;
+		}
+		
 		if(exitPrice > 0f && exitDate != null){
 			on = false;
 			holdingPeriod = Math.abs(entryDate.daysBetween(exitDate));
@@ -220,6 +234,14 @@ public class Trade {
 	
 	public int getHoldingPeriod(){
 		return holdingPeriod;
+	}
+	
+	public String getSymbol(){
+		return symbol;
+	}
+	
+	public void setSymbol(String symbol){
+		this.symbol = symbol;
 	}
 	
 	/*********************** Overrides **************************************/

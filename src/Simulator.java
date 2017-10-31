@@ -73,7 +73,12 @@ public class Simulator {
 			return null;
 		}
 		
-		DataArray dataArray = new DataArray(symbol, path);
+		symbol = dataFile.getName();
+		symbol = symbol.replaceAll(".csv", "");
+		
+		DataArray dataArray = new DataArray(symbol, dataFile.getPath());
+		
+		System.out.println(dataArray.getSymbol());
 		
 		dataArray.load(dataFile);
 		return processData(dataArray, stop, target);
@@ -101,6 +106,7 @@ public class Simulator {
 				Bar entryBar = dataArray.get(nextDay);
 				
 				Trade trade = new Trade(entryBar.getDate(), entryBar.getOpen(), Direction.LONG);
+				trade.setSymbol(dataArray.getSymbol());
 				trade.setStopLoss(stop);
 				trade.setTarget(target);
 				
@@ -132,9 +138,13 @@ public class Simulator {
 				}
 				
 				trade.close();
-				tradeArray.add(trade);
-				System.out.println(trade);
-				System.out.println();
+				
+				if(Math.abs(trade.getEntryPrice() - trade.getExitPrice()) > 0.001){
+					tradeArray.add(trade);
+					System.out.println(trade);
+					System.out.println();					
+				}
+				
 			}else if(analyzer.sixtyDayLow(i, dataArray)
 					&& analyzer.outsideDay(i, dataArray)
 					&& analyzer.largest5DayRange(i, dataArray)){
@@ -148,6 +158,7 @@ public class Simulator {
 				Bar entryBar = dataArray.get(nextDay);
 				
 				Trade trade = new Trade(entryBar.getDate(), entryBar.getOpen(), Direction.SHORT);
+				trade.setSymbol(dataArray.getSymbol());
 				trade.setStopLoss(stop);
 				trade.setTarget(target);
 				
@@ -180,7 +191,7 @@ public class Simulator {
 				}
 				
 				trade.close();
-				if(trade.getEntryPrice() != trade.getExitPrice()){
+				if(Math.abs(trade.getEntryPrice() - trade.getExitPrice()) > 0.001){
 					tradeArray.add(trade);
 					System.out.println(trade);
 					System.out.println();					

@@ -1,4 +1,7 @@
-import java.util.Collection;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -70,6 +73,32 @@ public class TradeArray implements Iterable<Trade>{
 		stats.calculateStats();
 		stats.printToFile();
 		return stats;
+	}
+	
+	public void log(String fileName) throws IOException{
+		BufferedWriter bW = new BufferedWriter(new FileWriter(fileName));
+		bW.write("Symbol, Direction, Entry Date, Entry Price, Number of Shares, Stop Loss, Target, Exit Date, Exit Price, Holding Period, percentPL\n");
+		DecimalFormat df = new DecimalFormat("##.##");
+		
+		for(Trade trade : tradeVector){
+			
+			String str = trade.getSymbol() + "," + 
+					trade.getDirection() + "," +
+					trade.getEntryDate() + "," +
+					df.format(trade.getEntryPrice()) + "," +
+					trade.getNumberOfShares() + "," +
+					trade.getStopLoss() + "," +
+					trade.getTarget() + "," +
+					trade.getExitDate() + "," +
+					df.format(trade.getExitPrice()) + "," +
+					trade.getHoldingPeriod() + "," +
+					df.format(trade.percentPL()) + "\n";
+			
+			
+			bW.write(str);
+		}
+		
+		bW.close();
 	}
 	
 	@Override

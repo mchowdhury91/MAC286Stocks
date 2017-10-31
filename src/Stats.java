@@ -143,6 +143,26 @@ public class Stats {
 		return avgHoldingPeriod;
 	}
 	
+	public String getCSVLine() throws IllegalArgumentException, IllegalAccessException{
+		
+		String str = "";
+		DecimalFormat df = new DecimalFormat("##.##");
+		
+		for(Field f : getClass().getDeclaredFields()){
+			if(f.getName() == "mFile" ||
+					f.getName() == "mPath" ||
+					f.getName() == "tradeArray"){
+				continue;
+			}
+			str += df.format(f.get(this)) + ",";
+		}
+		
+		str += "\n";
+		
+		return str;
+		
+	}
+	
 	public boolean printToFile() {
 		//open the file as a bufferedWriter 
 		BufferedWriter bW;

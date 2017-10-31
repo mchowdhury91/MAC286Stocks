@@ -10,21 +10,21 @@ public class TradeArrayTester {
 		float stopLoss = 2;
 		float target = 4;
 		
-		Trade trade = new Trade(1, 391f, entryDate, 291f, exitDate, stopLoss, target, Direction.SHORT);
+		Trade trade = new Trade(1, 391f, entryDate, 291f, exitDate, stopLoss, target, Direction.SHORT, "GOOGL");
 		
 		System.out.println("Short trade:\nEntry:" + trade.getEntryPrice() + "\nExit: " + trade.getExitPrice() + "\nNumber of Shares: 1");
 		System.out.println("Percent PL: " + trade.percentPL());
 		System.out.println("PL: " + trade.PL());
 		System.out.println();
 		
-		Trade trade2 = new Trade(1, 391f, entryDate, 291f, exitDate, stopLoss, target, Direction.LONG);
+		Trade trade2 = new Trade(1, 391f, entryDate, 291f, exitDate, stopLoss, target, Direction.LONG, "GOOGL");
 		System.out.println();
 		System.out.println("Long trade:\nEntry:" + trade2.getEntryPrice() + "\nExit: " + trade2.getExitPrice() + "\nNumber of Shares: 1");
 		System.out.println("Percent PL: " + trade2.percentPL());
 		System.out.println("PL: " + trade2.PL());
 		System.out.println();
 		
-		Trade trade3 = new Trade(10, 200f, entryDate, 391f, exitDate, stopLoss, target, Direction.LONG);
+		Trade trade3 = new Trade(10, 200f, entryDate, 391f, exitDate, stopLoss, target, Direction.LONG, "GOOGL");
 		System.out.println();
 		System.out.println("Long trade:\nEntry:" + trade3.getEntryPrice() + "\nExit: " + trade3.getExitPrice() + "\nNumber of Shares: 1");
 		System.out.println("Percent PL: " + trade3.percentPL());
@@ -61,7 +61,7 @@ public class TradeArrayTester {
 				dir = Direction.SHORT;
 			}
 			
-			Trade t = new Trade(numShares, entryP, tEntryDate, exitP, tExitDate, stopLoss, target, dir);
+			Trade t = new Trade(numShares, entryP, tEntryDate, exitP, tExitDate, stopLoss, target, dir, "GOOGL");
 			tA2.add(t);
 		}
 		

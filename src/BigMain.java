@@ -24,7 +24,7 @@ public class BigMain {
 			System.exit(1);
 		}
 		
-		bR.readLine();
+		
 		String line = "";
 		while((line = bR.readLine()) != null){
 			// remove any new line and carriage return characters

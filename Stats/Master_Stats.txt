@@ -1,130 +1,130 @@
 StopLoss: 2.0 Target: 2.0
-AveragePL: -0.02919783637668389
-AverageLongPL: -0.020285496850960625
-AverageShortPL: -0.09090903581994952
-Wins/NumTrades: 0.5086042
-Average Holding Period: 4.121415
+AveragePL: 0.04343714536193185
+AverageLongPL: 0.0647947391732465
+AverageShortPL: -0.10526309425669506
+Wins/NumTrades: 0.5108593
+Average Holding Period: 5.831917
 --------------------
 
 StopLoss: 2.0 Target: 4.0
-AveragePL: 0.17301374277630624
-AverageLongPL: 0.1126609502311315
-AverageShortPL: 0.5909111093391072
-Wins/NumTrades: 0.4617591
-Average Holding Period: 5.1845126
+AveragePL: 0.276253702173621
+AverageLongPL: 0.23376612074963457
+AverageShortPL: 0.5714305836455267
+Wins/NumTrades: 0.37937558
+Average Holding Period: 11.163671
 --------------------
 
 StopLoss: 2.0 Target: 5.0
-AveragePL: 0.24156632235747394
-AverageLongPL: 0.15172666829503273
-AverageShortPL: 0.8636378663958926
-Wins/NumTrades: 0.45124283
-Average Holding Period: 5.455067
+AveragePL: 0.37086094959569404
+AverageLongPL: 0.30303011273408864
+AverageShortPL: 0.8421067635815843
+Wins/NumTrades: 0.33869442
+Average Holding Period: 13.609271
 --------------------
 
 StopLoss: 2.0 Target: 10.0
-AveragePL: 0.3865480371955675
-AverageLongPL: 0.1797909809977501
-AverageShortPL: 1.81818401723197
-Wins/NumTrades: 0.42829826
-Average Holding Period: 6.049713
+AveragePL: 0.5616718791920049
+AverageLongPL: 0.3843668503818243
+AverageShortPL: 1.789475875689571
+Wins/NumTrades: 0.21347249
+Average Holding Period: 23.635674
 --------------------
 
 StopLoss: 4.0 Target: 2.0
-AveragePL: -0.3173329068372742
-AverageLongPL: -0.2712585602029017
-AverageShortPL: -0.6363628524722476
-Wins/NumTrades: 0.56978965
-Average Holding Period: 5.1787763
+AveragePL: -0.16997333300124934
+AverageLongPL: -0.09935406642135225
+AverageShortPL: -0.6616533394146683
+Wins/NumTrades: 0.638338
+Average Holding Period: 9.27762
 --------------------
 
 StopLoss: 4.0 Target: 4.0
-AveragePL: -0.12595368054006284
-AverageLongPL: -0.17040261562457165
-AverageShortPL: 0.1818215214844906
-Wins/NumTrades: 0.52007645
-Average Holding Period: 6.4388146
+AveragePL: 0.022725204626719158
+AverageLongPL: 0.00433084817516455
+AverageShortPL: 0.1503792723318688
+Wins/NumTrades: 0.50284094
+Average Holding Period: 17.711174
 --------------------
 
 StopLoss: 4.0 Target: 5.0
-AveragePL: -0.05244915687210188
-AverageLongPL: -0.12238748539320685
-AverageShortPL: 0.43182078455433703
-Wins/NumTrades: 0.5086042
-Average Holding Period: 6.7992353
+AveragePL: 0.09942936287684874
+AverageLongPL: 0.056334844260665214
+AverageShortPL: 0.3984988416944231
+Wins/NumTrades: 0.45549244
+Average Holding Period: 21.79356
 --------------------
 
 StopLoss: 4.0 Target: 10.0
-AveragePL: 0.08632552941609352
-AverageLongPL: -0.08939167056477239
-AverageShortPL: 1.3030340201926953
-Wins/NumTrades: 0.48470363
-Average Holding Period: 7.674952
+AveragePL: 0.4126074120558891
+AverageLongPL: 0.28883967983905284
+AverageShortPL: 1.263161601876854
+Wins/NumTrades: 0.31518623
+Average Holding Period: 38.4298
 --------------------
 
 StopLoss: 5.0 Target: 2.0
-AveragePL: -0.38113945673384736
-AverageLongPL: -0.34714532266136594
-AverageShortPL: -0.6183199036212368
-Wins/NumTrades: 0.5885168
-Average Holding Period: 5.480383
+AveragePL: -0.21192198004943646
+AverageLongPL: -0.14919095529092324
+AverageShortPL: -0.6515143883950782
+Wins/NumTrades: 0.68401134
+Average Holding Period: 10.779565
 --------------------
 
 StopLoss: 5.0 Target: 4.0
-AveragePL: -0.2034979395978331
-AverageLongPL: -0.2545468095196839
-AverageShortPL: 0.1526750917653091
-Wins/NumTrades: 0.53588516
-Average Holding Period: 6.768421
+AveragePL: -0.02946953787096553
+AverageLongPL: -0.05000260757363361
+AverageShortPL: 0.11363973581429684
+Wins/NumTrades: 0.5522814
+Average Holding Period: 20.927757
 --------------------
 
 StopLoss: 5.0 Target: 5.0
-AveragePL: -0.12901583397538183
-AverageLongPL: -0.2076826021992306
-AverageShortPL: 0.4198500145482653
-Wins/NumTrades: 0.5244019
-Average Holding Period: 7.1578946
+AveragePL: 0.08554906264910679
+AverageLongPL: 0.043475275972615114
+AverageShortPL: 0.3787906061519276
+Wins/NumTrades: 0.5085551
+Average Holding Period: 25.78232
 --------------------
 
 StopLoss: 5.0 Target: 10.0
-AveragePL: 0.025560259717431935
-AverageLongPL: -0.15677248178094755
-AverageShortPL: 1.2977138912404766
-Wins/NumTrades: 0.5014354
-Average Holding Period: 8.166507
+AveragePL: 0.5187326389133186
+AverageLongPL: 0.41254141831686525
+AverageShortPL: 1.250003998929804
+Wins/NumTrades: 0.36791545
+Average Holding Period: 46.570606
 --------------------
 
 StopLoss: 10.0 Target: 2.0
-AveragePL: -0.5381905676003849
-AverageLongPL: -0.3505567314115473
-AverageShortPL: -1.8473304628415872
-Wins/NumTrades: 0.6086124
-Average Holding Period: 6.078469
+AveragePL: -0.17045660813649496
+AverageLongPL: 0.07792004130103371
+AverageShortPL: -1.9090931541991956
+Wins/NumTrades: 0.8191288
+Average Holding Period: 17.764204
 --------------------
 
 StopLoss: 10.0 Target: 4.0
-AveragePL: -0.3404216905904301
-AverageLongPL: -0.24260472838259434
-AverageShortPL: -1.0229003429412842
-Wins/NumTrades: 0.5569378
-Average Holding Period: 7.4354067
+AveragePL: 0.14299043822674892
+AverageLongPL: 0.32060732862291574
+AverageShortPL: -1.0909087170254101
+Wins/NumTrades: 0.7244995
+Average Holding Period: 35.102955
 --------------------
 
 StopLoss: 10.0 Target: 5.0
-AveragePL: -0.2908200209024563
-AverageLongPL: -0.19574053019195534
-AverageShortPL: -0.9541990629589284
-Wins/NumTrades: 0.5444976
-Average Holding Period: 7.8861246
+AveragePL: 0.23377505695546857
+AverageLongPL: 0.4148431688416993
+AverageShortPL: -1.022727901285345
+Wins/NumTrades: 0.68225193
+Average Holding Period: 42.620228
 --------------------
 
 StopLoss: 10.0 Target: 10.0
-AveragePL: -0.13259082920028617
-AverageLongPL: -0.1406624440087448
-AverageShortPL: -0.07633598706194462
-Wins/NumTrades: 0.52394634
-Average Holding Period: 9.150383
+AveragePL: 0.9055504255656954
+AverageLongPL: 1.0614528570761228
+AverageShortPL: -0.1515153032360655
+Wins/NumTrades: 0.54527754
+Average Holding Period: 79.66894
 --------------------
 
-Best AveragePL: 0.3865480371955675, from S: 2.0, T: 10.0
-Worst AveragePL: -0.5381905676003849, from S: 10.0, T: 2.0
+Best AveragePL: 0.9055504255656954, from S: 10.0, T: 10.0
+Worst AveragePL: -0.21192198004943646, from S: 5.0, T: 2.0

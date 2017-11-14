@@ -10,12 +10,12 @@ import java.util.Vector;
 
 /*
  * Dependencies:
- * Bar.java
+ * DataBar.java
  * MAC286Date.java
  */
-public class DataArray implements Iterable<Bar>{
+public class DataArray implements Iterable<DataBar>{
 
-	private Vector<Bar> barVector;
+	private Vector<DataBar> barVector;
 	private String symbol;
 	private String path;
 	
@@ -25,7 +25,7 @@ public class DataArray implements Iterable<Bar>{
 	 * @param path
 	 */
 	public DataArray(String symbol, String path){
-		barVector = new Vector<Bar>(1000,100);
+		barVector = new Vector<DataBar>(1000,100);
 		this.symbol = symbol;
 		this.path = path;
 	}
@@ -33,12 +33,12 @@ public class DataArray implements Iterable<Bar>{
 	public DataArray(){
 		symbol = "";
 		path = "";
-		barVector = new Vector<Bar>(1000,100);
+		barVector = new Vector<DataBar>(1000,100);
 	}
 	
 	public String getSymbol(){ return symbol; }
 	public String getPath() { return path;	}
-	public Vector<Bar> getBarVector(){ return barVector; }
+	public Vector<DataBar> getBarVector(){ return barVector; }
 	
 	public void setSymbol(String symbol){
 		this.symbol = symbol;
@@ -64,19 +64,19 @@ public class DataArray implements Iterable<Bar>{
 		return isFull();
 	}
 	
-	public void add(Bar b){
+	public void add(DataBar b){
 		barVector.add(b);
 	}
 	
-	public void addAtHead(Bar b){
+	public void addAtHead(DataBar b){
 		barVector.insertElementAt(b, 0);
 	}
 	
-	public void insert(Bar b, int index){
+	public void insert(DataBar b, int index){
 		barVector.insertElementAt(b, index);
 	}
 	
-	public Bar at(int index){
+	public DataBar at(int index){
 		try{
 			return barVector.get(index);
 		}catch(ArrayIndexOutOfBoundsException e){
@@ -84,7 +84,7 @@ public class DataArray implements Iterable<Bar>{
 		}
 	}
 	
-	public Bar get(int index){
+	public DataBar get(int index){
 		try{
 			return barVector.get(index);
 		}catch(ArrayIndexOutOfBoundsException e){
@@ -92,11 +92,11 @@ public class DataArray implements Iterable<Bar>{
 		}
 	}
 	
-	public Bar remove(int index){
+	public DataBar remove(int index){
 		return barVector.remove(index);
 	}
 	
-	public Bar remove(){
+	public DataBar remove(){
 		return barVector.remove(0);
 	}
 	
@@ -108,7 +108,7 @@ public class DataArray implements Iterable<Bar>{
 			int count = 0;
 			String line = null;
 			while((line = in.readLine()) != null){
-				barVector.add(new Bar(line));
+				barVector.add(new DataBar(line));
 				count++;
 			}
 			
@@ -138,7 +138,7 @@ public class DataArray implements Iterable<Bar>{
 			int count = 0;
 			String line = null;
 			while((line = in.readLine()) != null){
-				barVector.add(new Bar(line));
+				barVector.add(new DataBar(line));
 				count++;
 			}
 			
@@ -164,7 +164,7 @@ public class DataArray implements Iterable<Bar>{
 	}
 	
 	@Override
-	public Iterator<Bar> iterator() {
+	public Iterator<DataBar> iterator() {
 		return barVector.iterator();
 	}
 }

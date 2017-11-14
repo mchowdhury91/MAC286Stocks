@@ -14,14 +14,13 @@ import java.util.Date;
  * Dependencies:
  * MAC286Date.java
  */
-public class Bar {
-
+public class DataBar {
 	
 	private MAC286Date date;
 	private float open, high, low, close, adjClose;
 	private int volume;
 	
-	public Bar(){
+	public DataBar(){
 		try{
 			date = new MAC286Date("2000-01-01");
 		}catch(Exception e){
@@ -37,7 +36,7 @@ public class Bar {
 		volume = 0;		
 	}
 
-	public Bar(String str) throws ParseException {
+	public DataBar(String str) throws ParseException {
 		str = str.trim();
 		String[] dataArray = str.split(",");
 		

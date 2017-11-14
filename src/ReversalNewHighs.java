@@ -23,7 +23,7 @@ public class ReversalNewHighs extends TradingPattern {
 				// buy at opening of next day
 				int nextDay = i + 1;
 				// bar for when we enter trade
-				Bar entryBar = dataArray.get(nextDay);
+				DataBar entryBar = dataArray.get(nextDay);
 
 				Trade trade = new Trade(entryBar.getDate(), entryBar.getOpen(), Direction.LONG);
 				trade.setSymbol(dataArray.getSymbol());
@@ -50,7 +50,7 @@ public class ReversalNewHighs extends TradingPattern {
 					continue;
 				}
 
-				Bar entryBar = dataArray.get(nextDay);
+				DataBar entryBar = dataArray.get(nextDay);
 
 				Trade trade = new Trade(entryBar.getDate(), entryBar.getOpen(), Direction.SHORT);
 				trade.setSymbol(dataArray.getSymbol());
@@ -76,7 +76,7 @@ public class ReversalNewHighs extends TradingPattern {
 		float targetPrice = trade.getEntryPrice() * (1f + trade.getTarget() / 100f);
 		
 		for(int i = entryDay + 2; i < dataArray.getSize(); i++){
-			Bar exitBar = dataArray.get(i);
+			DataBar exitBar = dataArray.get(i);
 
 			if (exitBar.getLow() <= stopPrice) {
 				System.out.println("exitBar low: " + exitBar.getLow());
@@ -108,7 +108,7 @@ public class ReversalNewHighs extends TradingPattern {
 
 		// loop to check when to sell
 		for (int j = entryDay + 2; j < dataArray.getSize(); j++) {
-			Bar exitBar = dataArray.get(j);
+			DataBar exitBar = dataArray.get(j);
 
 			if (exitBar.getHigh() >= stopPrice) {
 				System.out.println("exitBar low: " + exitBar.getLow());

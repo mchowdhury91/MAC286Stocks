@@ -4,7 +4,7 @@ public class PatternUtil {
 	
 	public boolean sixtyDayHigh(int t, DataArray dataArray){
 		
-		Vector<Bar> barList = dataArray.getBarVector();
+		Vector<DataBar> barList = dataArray.getBarVector();
 		float max = barList.get(t).getHigh();
 		for(int i = t-1; i >= t-59; i--){
 			if(barList.get(i).getHigh() >= max){
@@ -22,7 +22,7 @@ public class PatternUtil {
 			return false;
 		}
 		
-		Vector<Bar> barList = dataArray.getBarVector();
+		Vector<DataBar> barList = dataArray.getBarVector();
 		float max = barList.get(t).getHigh();
 		for(int i = t-1; i >= 0; i--){
 			if(barList.get(i).getHigh() >= max){
@@ -35,7 +35,7 @@ public class PatternUtil {
 
 	public boolean sixtyDayLow(int t, DataArray dataArray){
 		
-		Vector<Bar> barList = dataArray.getBarVector();
+		Vector<DataBar> barList = dataArray.getBarVector();
 		
 		float min = barList.get(t).getLow();
 		for(int i = t-1; i >= 0; i--){
@@ -49,7 +49,7 @@ public class PatternUtil {
 	
 	public boolean largest5DayRange(int t, DataArray dataArray){
 		
-		Vector<Bar> barList = dataArray.getBarVector();
+		Vector<DataBar> barList = dataArray.getBarVector();
 		
 		float max = barList.get(t).getRange();
 		for(int i = t-1; i >= t-4; i--){
@@ -62,13 +62,13 @@ public class PatternUtil {
 	}
 	
 	public boolean tradesUnderYesterdaysLow(int t, DataArray dataArray){
-		Vector<Bar> barList = dataArray.getBarVector();
+		Vector<DataBar> barList = dataArray.getBarVector();
 		return (barList.get(t).getLow() < barList.get(t-1).getLow());
 		
 	}
 
 	public boolean tradesOverYesterdaysHigh(int t, DataArray dataArray){
-		Vector<Bar> barList = dataArray.getBarVector();
+		Vector<DataBar> barList = dataArray.getBarVector();
 		return (barList.get(t).getHigh() > barList.get(t-1).getHigh());
 	}	
 	

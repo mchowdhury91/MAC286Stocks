@@ -106,7 +106,7 @@ public class BigMain {
 				Stats stats = new Stats(statsFileName, statsLogPath, tradeArray);
 				
 				stats.calculateStats();
-				stats.printToFile();
+				//stats.printToFile();
 
 				String tradeArrayLogPath = tradesDir.getAbsolutePath();
 				String tradeArrayLogFileName = "Trades_s" + stopLoss + "_t" + target + ".csv";

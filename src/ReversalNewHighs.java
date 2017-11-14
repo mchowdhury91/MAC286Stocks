@@ -14,10 +14,10 @@ public class ReversalNewHighs extends TradingPattern {
 			// loop ends two days early because we won't have enough data
 			// to process the last two days.
 			
-			Analyzer analyzer = new Analyzer();
+			PatternUtil patternUtil = new PatternUtil();
 
-			if (analyzer.sixtyDayHigh(i, dataArray) && analyzer.outsideDay(i, dataArray)
-					&& analyzer.largest5DayRange(i, dataArray)) {
+			if (patternUtil.sixtyDayHigh(i, dataArray) && patternUtil.outsideDay(i, dataArray)
+					&& patternUtil.largest5DayRange(i, dataArray)) {
 				// if the bar for the i'th day meets the pattern criteria for a long trade
 				
 				// buy at opening of next day
@@ -41,8 +41,8 @@ public class ReversalNewHighs extends TradingPattern {
 					System.out.println();
 				}
 
-			} else if (analyzer.sixtyDayLow(i, dataArray) && analyzer.outsideDay(i, dataArray)
-					&& analyzer.largest5DayRange(i, dataArray)) {
+			} else if (patternUtil.sixtyDayLow(i, dataArray) && patternUtil.outsideDay(i, dataArray)
+					&& patternUtil.largest5DayRange(i, dataArray)) {
 
 				// SHORT
 				int nextDay = i + 1;

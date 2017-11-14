@@ -1,9 +1,6 @@
 import java.util.Vector;
 
-public class Analyzer {
-
-	public Analyzer() {
-	}
+public class PatternUtil {
 	
 	public boolean sixtyDayHigh(int t, DataArray dataArray){
 		

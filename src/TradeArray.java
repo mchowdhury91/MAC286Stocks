@@ -75,7 +75,8 @@ public class TradeArray implements Iterable<Trade>{
 		return stats;
 	}
 	
-	public void log(String fileName) throws IOException{
+	public void log(String fileName, String path) throws IOException{
+		fileName = path + "/" + fileName;
 		BufferedWriter bW = new BufferedWriter(new FileWriter(fileName));
 		bW.write("Symbol, Direction, Entry Date, Entry Price, Number of Shares, Stop Loss, Target, Exit Date, Exit Price, Holding Period, percentPL\n");
 		DecimalFormat df = new DecimalFormat("##.##");

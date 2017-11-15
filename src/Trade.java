@@ -34,7 +34,9 @@ public class Trade {
 	private float entryPrice, exitPrice, stopLoss, target;
 	private int numberOfShares;
 	private int holdingPeriod;
-	private boolean on;
+	private boolean open;
+	// open denotes whether or not the trade is complete or incomplete
+	// open is true if the trade is incomplete
 	
 	private String symbol;
 	
@@ -44,7 +46,7 @@ public class Trade {
 		this.numberOfShares = 1;
 		holdingPeriod = 0;
 		direction = Direction.LONG;
-		on = true;
+		open = true;
 		symbol = "";
 		exitDate = null;
 		entryDate = null;
@@ -74,7 +76,7 @@ public class Trade {
 		this.target = target;
 		
 		this.direction = direction;
-		on = false;
+		open = false;
 		holdingPeriod = Math.abs(entryDate.daysBetween(exitDate));
 		this.symbol = symbol;
 	}
@@ -92,7 +94,7 @@ public class Trade {
 		}
 		
 		direction = Direction.LONG;
-		on = true;
+		open = true;
 		
 		holdingPeriod = 0;
 		symbol = "";
@@ -106,7 +108,7 @@ public class Trade {
 		entryDate = null;
 		exitDate = null;
 		
-		on = true;
+		open = true;
 		this.direction = direction;	
 		holdingPeriod = 0;
 		symbol = "";
@@ -127,7 +129,7 @@ public class Trade {
 		exitDate = null;
 		holdingPeriod = 0;
 		
-		on = true;
+		open = true;
 		this.direction = direction;		
 		symbol = "";
 		
@@ -136,7 +138,7 @@ public class Trade {
 	
 	/****************** Special Functions ********************/
 	public float PL(){
-		if(on){
+		if(open){
 			// trade not closed
 			System.out.println("Trade was not closed");
 			return 0f;
@@ -154,7 +156,7 @@ public class Trade {
 	}
 	
 	public float percentPL(){
-		if(on){
+		if(open){
 			// trade not closed
 			return 0f;
 		}
@@ -170,13 +172,13 @@ public class Trade {
 
 	public boolean close(){
 		if(symbol == "" || symbol == null){
-			on = true;
+			open = true;
 			System.out.println("Set the symbol for this trade before closing!");
 			return false;
 		}
 		
 		if(exitPrice > 0f && exitDate != null){
-			on = false;
+			open = false;
 			holdingPeriod = Math.abs(entryDate.daysBetween(exitDate));
 			return true;
 		}else{

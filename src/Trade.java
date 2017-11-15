@@ -243,6 +243,10 @@ public class Trade {
 		return holdingPeriod;
 	}
 	
+	public void setHoldingPeriod(int holdingPeriod){
+		this.holdingPeriod = holdingPeriod;
+	}
+	
 	public String getSymbol(){
 		return symbol;
 	}

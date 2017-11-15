@@ -13,8 +13,6 @@ public class ReversalNewHighs extends TradingPattern {
 		for (int i = 59; i < dataArray.getSize()-2; i++) {
 			// loop ends two days early because we won't have enough data
 			// to process the last two days.
-			
-			//PatternUtil PatternUtil = new PatternUtil();
 
 			if (PatternUtil.sixtyDayHigh(i, dataArray) && PatternUtil.outsideDay(i, dataArray)
 					&& PatternUtil.largest5DayRange(i, dataArray)) {
@@ -32,8 +30,6 @@ public class ReversalNewHighs extends TradingPattern {
 
 				// loop to check when to sell
 				trade = findLongTradeExit(i, trade);
-
-				trade.close();
 
 				if (Math.abs(trade.getEntryPrice() - trade.getExitPrice()) > 0.001) {
 					tradeArray.add(trade);
@@ -74,9 +70,11 @@ public class ReversalNewHighs extends TradingPattern {
 		
 		float stopPrice = trade.getEntryPrice() * (1f - trade.getStopLoss() / 100f);
 		float targetPrice = trade.getEntryPrice() * (1f + trade.getTarget() / 100f);
+		int holdingPeriod = 0;
 		
 		for(int i = entryDay + 2; i < dataArray.getSize(); i++){
 			DataBar exitBar = dataArray.get(i);
+			holdingPeriod++;
 
 			if (exitBar.getLow() <= stopPrice) {
 				System.out.println("exitBar low: " + exitBar.getLow());
@@ -95,9 +93,14 @@ public class ReversalNewHighs extends TradingPattern {
 			if (i == dataArray.getSize() - 1) {
 				trade.setExitDate(trade.getEntryDate());
 				trade.setExitPrice(trade.getEntryPrice());
+				holdingPeriod = 0;
+				break;
 			}
+			
 		}
 		
+		trade.setHoldingPeriod(holdingPeriod);
+		trade.close();
 		return trade;
 	}
 	
@@ -105,11 +108,13 @@ public class ReversalNewHighs extends TradingPattern {
 		
 		float stopPrice = trade.getEntryPrice() * (1f + trade.getStopLoss() / 100f);
 		float targetPrice = trade.getEntryPrice() * (1f - trade.getTarget() / 100f);
-
+		int holdingPeriod = 0;
+		
 		// loop to check when to sell
 		for (int j = entryDay + 2; j < dataArray.getSize(); j++) {
 			DataBar exitBar = dataArray.get(j);
-
+			holdingPeriod++;
+			
 			if (exitBar.getHigh() >= stopPrice) {
 				System.out.println("exitBar low: " + exitBar.getLow());
 				trade.setExitDate(exitBar.getDate());
@@ -127,10 +132,13 @@ public class ReversalNewHighs extends TradingPattern {
 			if (j == dataArray.getSize() - 1) {
 				trade.setExitDate(trade.getEntryDate());
 				trade.setExitPrice(trade.getEntryPrice());
+				holdingPeriod = 0;
 				break;
 			}
 		}
 		
+		trade.setHoldingPeriod(holdingPeriod);
+		trade.close();
 		return trade;
 	}
 	

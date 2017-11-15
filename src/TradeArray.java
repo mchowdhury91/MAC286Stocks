@@ -71,7 +71,7 @@ public class TradeArray implements Iterable<Trade>{
 	public Stats stats(){
 		Stats stats = new Stats(this);
 		stats.calculateStats();
-		stats.printToFile();
+		//stats.printToFile();
 		return stats;
 	}
 	

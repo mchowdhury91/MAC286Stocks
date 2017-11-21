@@ -65,11 +65,38 @@ public class BigMain {
 		return dir;
 	}
 
+	public void createStatsSummary(Stats[] statsList, File statsDir) throws IOException{
+		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(statsDir.getName() + "/" + "Stats.csv"));
+		String header = "";
+
+		// loop through the Fields of the Stats class and write them as the header for the csv file
+		// ignoring mFile, mPath and tradeArray
+		for (Field f : statsList[0].getClass().getDeclaredFields()) {
+			if (f.getName() == "mFile" || f.getName() == "mPath" || f.getName() == "tradeArray") {
+				continue;
+			}
+			header += f.getName() + ",";
+		}
+
+		header += "\n";
+		bufferedWriter.write(header);
+
+		// loop through each Stat object in statsList and write the data to the csv file
+		for (Stats s : statsList) {
+			try {
+				bufferedWriter.write(s.getCSVLine());
+			} catch (IllegalArgumentException | IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		}
+
+		bufferedWriter.close();		
+	}
+	
 	public static void main(String[] args) throws IOException {
 		BigMain bigMain = new BigMain();
 
 		ArrayList<String> symList = bigMain.createSymListArray();
-
 		File directory = bigMain.initDirectory("./Data");
 		
 		Simulator simulator = new Simulator();
@@ -119,33 +146,13 @@ public class BigMain {
 				listIndex++;
 			}
 		}
-
-		BufferedWriter bW2 = new BufferedWriter(new FileWriter(statsDir.getName() + "/" + "Stats.csv"));
-		String header = "";
-
-		// loop through the Fields of the Stats class and write them as the header for the csv file
-		// ignoring mFile, mPath and tradeArray
-		for (Field f : statsList[0].getClass().getDeclaredFields()) {
-			if (f.getName() == "mFile" || f.getName() == "mPath" || f.getName() == "tradeArray") {
-				continue;
-			}
-			header += f.getName() + ",";
+		
+		try{
+			bigMain.createStatsSummary(statsList, statsDir);
 		}
-
-		header += "\n";
-		bW2.write(header);
-
-		// loop through each Stat object in statsList and write the data to the csv file
-		for (Stats s : statsList) {
-			try {
-				bW2.write(s.getCSVLine());
-			} catch (IllegalArgumentException | IllegalAccessException e) {
-				e.printStackTrace();
-			}
+		catch(IOException e){
+			e.printStackTrace();
 		}
-
-		bW2.close();
-
 	}
 
 }

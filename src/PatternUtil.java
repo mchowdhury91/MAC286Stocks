@@ -1,7 +1,7 @@
 import java.util.Vector;
 
 public class PatternUtil {
-	
+
 	public static boolean sixtyDayHigh(int t, DataArray dataArray){
 		
 		Vector<DataBar> barList = dataArray.getBarVector();

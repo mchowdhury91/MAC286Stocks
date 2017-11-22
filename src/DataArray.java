@@ -1,7 +1,9 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Iterator;
@@ -130,17 +132,32 @@ public class DataArray implements Iterable<DataBar>{
 		}		
 	}
 
-	public int load(File dateFile){
-		try{			
-			BufferedReader in = new BufferedReader(new FileReader(dateFile));
+	public int load(File dataFile){
+		try{	
+			
+			BufferedReader in = new BufferedReader(new FileReader(dataFile));
 			in.readLine();
 			
 			int count = 0;
 			String line = null;
 			while((line = in.readLine()) != null){
-				barVector.add(new DataBar(line));
-				count++;
+				DataBar dataBar;
+				try{
+					dataBar = new DataBar(line);
+				}catch(NumberFormatException e){
+					System.out.println("DATABAR ERROR: " + line);
+					BufferedWriter bW = new BufferedWriter(new FileWriter("errors.txt"));
+					bW.write(line + "\n");
+					bW.close();
+					dataBar = null;
+				}
+				
+				if(dataBar != null){
+					barVector.add(new DataBar(line));
+					count++;
+				}
 			}
+
 			
 			in.close();
 			return count;

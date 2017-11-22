@@ -56,15 +56,13 @@ public class DataBar {
 
 	public void setBar(String str) throws ParseException {
 		String[] dataArray = str.split(",");
-
+		
 		date = new MAC286Date(dataArray[0].trim());
-
 		open = Float.parseFloat(dataArray[1].trim());
 		high = Float.parseFloat(dataArray[2].trim());
 		low = Float.parseFloat(dataArray[3].trim());
 		close = Float.parseFloat(dataArray[4].trim());
 		adjClose = Float.parseFloat(dataArray[5].trim());
-
 		volume = Integer.parseInt(dataArray[6].trim());
 	}
 

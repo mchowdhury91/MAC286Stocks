@@ -10,7 +10,6 @@ C
 CAT
 CSCO
 DAL
-DOW
 EMC
 EPI
 F

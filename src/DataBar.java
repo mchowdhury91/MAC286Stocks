@@ -11,19 +11,21 @@ import java.util.Date;
  */
 
 /*
- * Dependencies:
- * MAC286Date.java
+ * Dependencies: MAC286Date.java
  */
 public class DataBar {
-	
+
 	private MAC286Date date;
 	private float open, high, low, close, adjClose;
 	private int volume;
-	
-	public DataBar(){
-		try{
+
+	// TODO: open = open * adjClose / close (make sure close != 0)
+	// TODO: same for low, high
+
+	public DataBar() {
+		try {
 			date = new MAC286Date("2000-01-01");
-		}catch(Exception e){
+		} catch (Exception e) {
 			System.out.println("default bar constructor threw parse error");
 			System.exit(1);
 		}
@@ -32,40 +34,40 @@ public class DataBar {
 		low = 0f;
 		close = 0f;
 		adjClose = 0f;
-		
-		volume = 0;		
+
+		volume = 0;
 	}
 
 	public DataBar(String str) throws ParseException {
 		str = str.trim();
 		String[] dataArray = str.split(",");
-		
+
 		date = new MAC286Date(dataArray[0].trim());
-		
+
+		adjClose = Float.parseFloat(dataArray[5].trim());
+		close = Float.parseFloat(dataArray[4].trim());
 		open = Float.parseFloat(dataArray[1].trim());
 		high = Float.parseFloat(dataArray[2].trim());
 		low = Float.parseFloat(dataArray[3].trim());
-		close = Float.parseFloat(dataArray[4].trim());
-		adjClose = Float.parseFloat(dataArray[5].trim());
-		
+
 		volume = Integer.parseInt(dataArray[6].trim());
-		
+
 	}
 
-	public void setBar(String str) throws ParseException{
+	public void setBar(String str) throws ParseException {
 		String[] dataArray = str.split(",");
-		
+
 		date = new MAC286Date(dataArray[0].trim());
-		
+
 		open = Float.parseFloat(dataArray[1].trim());
 		high = Float.parseFloat(dataArray[2].trim());
 		low = Float.parseFloat(dataArray[3].trim());
 		close = Float.parseFloat(dataArray[4].trim());
 		adjClose = Float.parseFloat(dataArray[5].trim());
-		
-		volume = Integer.parseInt(dataArray[6].trim());		
+
+		volume = Integer.parseInt(dataArray[6].trim());
 	}
-	
+
 	public MAC286Date getDate() {
 		return date;
 	}
@@ -93,9 +95,9 @@ public class DataBar {
 	public int getVolume() {
 		return volume;
 	}
-	
-	public float getRange(){
-		return high-low;
+
+	public float getRange() {
+		return high - low;
 	}
 
 	public void setDate(MAC286Date date) {
@@ -125,8 +127,8 @@ public class DataBar {
 	public void setVolume(int volume) {
 		this.volume = volume;
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		String str = "";
 		str += ("Date: " + this.getDate());
 		str += ("\nOpen: " + this.getOpen());
@@ -137,8 +139,8 @@ public class DataBar {
 		str += ("\nVolume: " + this.getVolume());
 		return str;
 	}
-	
-	public void display(){
+
+	public void display() {
 		System.out.println("Date: " + this.getDate());
 		System.out.println("Open: " + this.getOpen());
 		System.out.println("High: " + this.getHigh());
@@ -147,5 +149,5 @@ public class DataBar {
 		System.out.println("Adj Close: " + this.getAdjClose());
 		System.out.println("Volume: " + this.getVolume());
 	}
-	
+
 }

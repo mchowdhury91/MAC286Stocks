@@ -1,13 +1,20 @@
 
 public class ReversalNewHighs extends TradingPattern {
 	
+	private int holdLimit;
+	
 	public ReversalNewHighs(){
 		dataArray = null;
+		holdLimit = 0;
+	}
+	
+	public ReversalNewHighs(int holdLimit){
+		dataArray = null;
+		this.holdLimit = holdLimit;
 	}
 	
 	@Override
 	public TradeArray match() {
-
 		tradeArray = new TradeArray();
 		
 		for (int i = 59; i < dataArray.getSize()-2; i++) {
@@ -75,7 +82,16 @@ public class ReversalNewHighs extends TradingPattern {
 		for(int i = entryDay + 2; i < dataArray.getSize(); i++){
 			DataBar exitBar = dataArray.get(i);
 			holdingPeriod++;
-
+			
+			if(holdLimit > 0 && holdingPeriod > holdLimit){
+				trade.setExitDate(exitBar.getDate());
+				trade.setExitPrice(exitBar.getOpen());
+				break;
+			}
+			
+			// trailing stop
+			stopPrice = exitBar.getOpen() * (1f - trade.getStopLoss() / 100f);
+			
 			if(exitBar.getOpen() >= targetPrice || exitBar.getOpen() <= stopPrice){
 				trade.setExitDate(exitBar.getDate());
 				trade.setExitPrice(exitBar.getOpen());
@@ -120,7 +136,17 @@ public class ReversalNewHighs extends TradingPattern {
 		for (int j = entryDay + 2; j < dataArray.getSize(); j++) {
 			DataBar exitBar = dataArray.get(j);
 			holdingPeriod++;
-
+			
+			if(holdLimit > 0 && holdingPeriod > holdLimit){
+				System.out.println("Holding Period " + holdingPeriod + " exceeded holdLimit " + holdLimit);
+				trade.setExitDate(exitBar.getDate());
+				trade.setExitPrice(exitBar.getOpen());
+				break;
+			}
+			
+			// trailing stop
+			stopPrice = exitBar.getOpen() * (1f + trade.getStopLoss() / 100f);
+			
 			if(exitBar.getOpen() <= targetPrice || exitBar.getOpen() >= stopPrice){
 				trade.setExitDate(exitBar.getDate());
 				trade.setExitPrice(exitBar.getOpen());

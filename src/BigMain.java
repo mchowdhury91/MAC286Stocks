@@ -100,7 +100,7 @@ public class BigMain {
 		File directory = bigMain.initDirectory("./Data");
 		
 		Simulator simulator = new Simulator();
-		ReversalNewHighs rhn = new ReversalNewHighs();
+		ReversalNewHighs rhn = new ReversalNewHighs(10);
 		simulator.setTradingPattern(rhn);
 		
 		float[] stopLossValues = { 2f, 4f, 5f, 10f };

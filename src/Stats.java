@@ -82,6 +82,8 @@ public class Stats {
 		minPL = Double.MAX_VALUE;
 		maxPL = Double.MIN_VALUE;
 		
+		System.out.println("tradeArray size: " + tradeArray.getVector().size());
+		
 		stopLoss = tradeArray.getVector().get(0).getStopLoss();
 		target = tradeArray.getVector().get(0).getTarget();
 		

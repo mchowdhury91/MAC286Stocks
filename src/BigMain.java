@@ -65,8 +65,8 @@ public class BigMain {
 		return dir;
 	}
 
-	public void createStatsSummary(Stats[] statsList, File statsDir) throws IOException{
-		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(statsDir.getName() + "/" + "Stats.csv"));
+	public void createStatsSummary(Stats[] statsList, File statsDir, String statsFileName) throws IOException{
+		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(statsDir.getName() + "/" + statsFileName));
 		String header = "";
 
 		// loop through the Fields of the Stats class and write them as the header for the csv file
@@ -100,59 +100,66 @@ public class BigMain {
 		File directory = bigMain.initDirectory("./Data");
 		
 		Simulator simulator = new Simulator();
-		ReversalNewHighs rhn = new ReversalNewHighs(10);
+		ReversalNewHighs rhn = new ReversalNewHighs();
 		simulator.setTradingPattern(rhn);
 		
 		float[] stopLossValues = { 2f, 4f, 5f, 10f };
 		float[] targetValues = { 2f, 4f, 5f, 10f };
-		Stats[] statsList = new Stats[stopLossValues.length * targetValues.length];
-		int listIndex = 0;
-
+		int[] holdLimits = { 0, 5, 10, 15 };
+		
 		File statsDir = bigMain.initDirectory("./Stats");
 
 		File tradesDir = bigMain.initDirectory(statsDir + "/Trades");
 
-		// nested loop to go through all combinations of stopLoss and targets
-		for (float stopLoss : stopLossValues) {
-			for (float target : targetValues) {
-
-				TradeArray tradeArray = new TradeArray();
-
-				// loop through all the symbols and run the simulator for each symbol
-				for (String symFileName : symList) {
-					File symFile = new File("./Data/" + symFileName);
-					if (symFile.exists())
-						tradeArray.add(simulator.run(symFile, stopLoss, target));
+		// nested loop to go through all combinations of stopLoss and targets and holdLimits
+		for(int holdLimit : holdLimits){
+			Stats[] statsList = new Stats[stopLossValues.length * targetValues.length];
+			int listIndex = 0;
+			rhn.setHoldLimit(holdLimit);
+			
+			for (float stopLoss : stopLossValues) {
+				for (float target : targetValues) {
+					TradeArray tradeArray = new TradeArray();
+	
+					// loop through all the symbols and run the simulator for each symbol
+					for (String symFileName : symList) {
+						System.out.println("symFileName: " + symFileName);
+						File symFile = new File("./Data/" + symFileName);
+						if (symFile.exists())
+							tradeArray.add(simulator.run(symFile, stopLoss, target));
+					}
+	
+					String statsLogPath = statsDir.getAbsolutePath();
+					String statsFileName = "Stats_s" + stopLoss + "_t" + target + "_hL" + holdLimit + ".txt";
+					// example: stats for a stopLoss of 5% and target of 10% will be saved as:
+					// ./Stats/Stats_s5_t10.txt
+					
+					Stats stats = new Stats(statsFileName, statsLogPath, tradeArray);
+					
+					stats.calculateStats();
+					//stats.printToFile();
+	
+					String tradeArrayLogPath = tradesDir.getAbsolutePath();
+					String tradeArrayLogFileName = "Trades_s" + stopLoss + "_t" + target + "_hL" + holdLimit + ".csv";
+					// example: all trades for a stopLoss of 5% and target of 10% will be saved as:
+					// ./Stats/Trades/Trades_s5_t10.txt			
+					
+					tradeArray.log(tradeArrayLogFileName, tradeArrayLogPath);
+	
+					statsList[listIndex] = stats;
+					listIndex++;
 				}
-
-				String statsLogPath = statsDir.getAbsolutePath();
-				String statsFileName = "Stats_s" + stopLoss + "_t" + target + ".txt";
-				// example: stats for a stopLoss of 5% and target of 10% will be saved as:
-				// ./Stats/Stats_s5_t10.txt
-				
-				Stats stats = new Stats(statsFileName, statsLogPath, tradeArray);
-				
-				stats.calculateStats();
-				//stats.printToFile();
-
-				String tradeArrayLogPath = tradesDir.getAbsolutePath();
-				String tradeArrayLogFileName = "Trades_s" + stopLoss + "_t" + target + ".csv";
-				// example: all trades for a stopLoss of 5% and target of 10% will be saved as:
-				// ./Stats/Trades/Trades_s5_t10.txt			
-				
-				tradeArray.log(tradeArrayLogFileName, tradeArrayLogPath);
-
-				statsList[listIndex] = stats;
-				listIndex++;
 			}
+			
+			try{
+				bigMain.createStatsSummary(statsList, statsDir, "Stats_hL" + holdLimit + ".csv");
+			}
+			catch(IOException e){
+				e.printStackTrace();
+			}
+			
 		}
 		
-		try{
-			bigMain.createStatsSummary(statsList, statsDir);
-		}
-		catch(IOException e){
-			e.printStackTrace();
-		}
 	}
 
 }

@@ -13,6 +13,14 @@ public class ReversalNewHighs extends TradingPattern {
 		this.holdLimit = holdLimit;
 	}
 	
+	public int getHoldLimit(){
+		return holdLimit;
+	}
+	
+	public void setHoldLimit(int holdLimit){
+		this.holdLimit = holdLimit;
+	}
+	
 	@Override
 	public TradeArray match() {
 		tradeArray = new TradeArray();

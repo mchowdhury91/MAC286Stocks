@@ -179,7 +179,7 @@ public class Trade {
 		
 		if(exitPrice > 0f && exitDate != null){
 			open = false;
-			holdingPeriod = Math.abs(entryDate.daysBetween(exitDate));
+			//holdingPeriod = Math.abs(entryDate.daysBetween(exitDate));
 			return true;
 		}else{
 			System.out.println("exitPrice or exitDate not set, can't close trade");

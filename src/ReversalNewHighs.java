@@ -44,7 +44,9 @@ public class ReversalNewHighs extends TradingPattern {
 				trade.setTarget(target);
 
 				// loop to check when to sell
-				trade = findLongTradeExit(i, trade);
+				// i = day we found a match for the pattern
+				// nextDay = day we entered
+				trade = findLongTradeExit(nextDay, trade);
 
 				if (Math.abs(trade.getEntryPrice() - trade.getExitPrice()) > 0.001) {
 					tradeArray.add(trade);
@@ -68,7 +70,8 @@ public class ReversalNewHighs extends TradingPattern {
 				trade.setStopLoss(stopLoss);
 				trade.setTarget(target);
 				
-				trade = findShortExitTrade(i, trade);
+				// nextDay = day we entered trade
+				trade = findShortExitTrade(nextDay, trade);
 				trade.close();
 				if (Math.abs(trade.getEntryPrice() - trade.getExitPrice()) > 0.001) {
 					tradeArray.add(trade);
@@ -84,10 +87,12 @@ public class ReversalNewHighs extends TradingPattern {
 	private Trade findLongTradeExit(int entryDay, Trade trade){
 		
 		float stopPrice = trade.getEntryPrice() * (1f - trade.getStopLoss() / 100f);
+		float originalSP = stopPrice;
 		float targetPrice = trade.getEntryPrice() * (1f + trade.getTarget() / 100f);
 		int holdingPeriod = 0;
 		
-		for(int i = entryDay + 2; i < dataArray.getSize(); i++){
+		
+		for(int i = entryDay + 1; i < dataArray.getSize(); i++){
 			DataBar exitBar = dataArray.get(i);
 			holdingPeriod++;
 			
@@ -98,7 +103,14 @@ public class ReversalNewHighs extends TradingPattern {
 			}
 			
 			// trailing stop
-			stopPrice = exitBar.getOpen() * (1f - trade.getStopLoss() / 100f);
+			// stopPrice = exitBar.getOpen() * (1f - trade.getStopLoss() / 100f);
+			
+//			float yesterdaysLow = dataArray.get(i-1).getLow();
+//			float twoDaysAgoLow = dataArray.get(i-2).getLow();
+
+			if(exitBar.getOpen() > trade.getEntryPrice()){
+				stopPrice = exitBar.getOpen() * (1f - trade.getStopLoss() / 100f);
+			}
 			
 			if(exitBar.getOpen() >= targetPrice || exitBar.getOpen() <= stopPrice){
 				trade.setExitDate(exitBar.getDate());
@@ -141,7 +153,7 @@ public class ReversalNewHighs extends TradingPattern {
 		int holdingPeriod = 0;
 		
 		// loop to check when to sell
-		for (int j = entryDay + 2; j < dataArray.getSize(); j++) {
+		for (int j = entryDay + 1; j < dataArray.getSize(); j++) {
 			DataBar exitBar = dataArray.get(j);
 			holdingPeriod++;
 			
@@ -153,7 +165,7 @@ public class ReversalNewHighs extends TradingPattern {
 			}
 			
 			// trailing stop
-			stopPrice = exitBar.getOpen() * (1f + trade.getStopLoss() / 100f);
+			// stopPrice = exitBar.getOpen() * (1f + trade.getStopLoss() / 100f);
 			
 			if(exitBar.getOpen() <= targetPrice || exitBar.getOpen() >= stopPrice){
 				trade.setExitDate(exitBar.getDate());

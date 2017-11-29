@@ -111,7 +111,6 @@ public class Simulator {
 		
 		dataArray.load(dataFile);
 		
-		
 		pattern.setDataArray(dataArray);
 		pattern.setStopLoss(stop);
 		pattern.setTarget(target);

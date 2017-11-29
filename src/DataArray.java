@@ -146,8 +146,9 @@ public class DataArray implements Iterable<DataBar>{
 					dataBar = new DataBar(line);
 				}catch(NumberFormatException e){
 					System.out.println("DATABAR ERROR: " + line);
-					BufferedWriter bW = new BufferedWriter(new FileWriter("errors.txt"));
-					bW.write(line + "\n");
+					BufferedWriter bW = new BufferedWriter(new FileWriter("errors.txt", true));
+					bW.write(line + "\n\r");
+					bW.write(dataFile.getName() + "\n\r");
 					bW.close();
 					dataBar = null;
 				}
@@ -158,7 +159,6 @@ public class DataArray implements Iterable<DataBar>{
 				}
 			}
 
-			
 			in.close();
 			return count;
 		}catch(FileNotFoundException e){

@@ -123,7 +123,7 @@ public class BigMain {
 	
 					// loop through all the symbols and run the simulator for each symbol
 					for (String symFileName : symList) {
-						System.out.println("symFileName: " + symFileName);
+						//System.out.println("symFileName: " + symFileName);
 						File symFile = new File("./Data/" + symFileName);
 						if (symFile.exists())
 							tradeArray.add(simulator.run(symFile, stopLoss, target));

@@ -128,6 +128,7 @@ public class DataBar {
 
 	public String toString() {
 		String str = "";
+		/**
 		str += ("Date: " + this.getDate());
 		str += ("\nOpen: " + this.getOpen());
 		str += ("\nHigh: " + this.getHigh());
@@ -135,6 +136,17 @@ public class DataBar {
 		str += ("\nClose: " + this.getClose());
 		str += ("\nAdj Close: " + this.getAdjClose());
 		str += ("\nVolume: " + this.getVolume());
+		**/
+		
+
+		str += (this.getDate() + ",");
+		str += (this.getOpen() + ",");
+		str += (this.getHigh() + ",");
+		str += (this.getLow() + ",");
+		str += (this.getClose() + ",");
+		str += (this.getAdjClose() + ",");
+		str += (this.getVolume() + ",");
+		
 		return str;
 	}
 

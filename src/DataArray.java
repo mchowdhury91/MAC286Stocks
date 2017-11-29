@@ -145,10 +145,11 @@ public class DataArray implements Iterable<DataBar>{
 				try{
 					dataBar = new DataBar(line);
 				}catch(NumberFormatException e){
+					String newline = System.getProperty("line.separator");
 					System.out.println("DATABAR ERROR: " + line);
 					BufferedWriter bW = new BufferedWriter(new FileWriter("errors.txt", true));
-					bW.write(line + "\n\r");
-					bW.write(dataFile.getName() + "\n\r");
+					bW.write(line + newline);
+					bW.write(dataFile.getName() + newline);
 					bW.close();
 					dataBar = null;
 				}

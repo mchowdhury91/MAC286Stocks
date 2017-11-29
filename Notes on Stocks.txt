@@ -1,0 +1,8 @@
+PYPL (PayPal) doesn't have data prior to 2015 on Yahoo Finance so it was removed from the list.
+
+Neither does LILAK or the following:
+LILA
+KHC
+JD
+NCLH
+FB

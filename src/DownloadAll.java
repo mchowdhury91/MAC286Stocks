@@ -54,7 +54,7 @@ public class DownloadAll {
 		}
 		
 		bR.close();
-		/**
+		
 		bR = new BufferedReader(new FileReader("newStocks.txt"));
 		while((line = bR.readLine()) != null){
 			// remove any new line and carriage return characters
@@ -67,7 +67,7 @@ public class DownloadAll {
 		}
 		
 		bR.close();	
-		**/	
+		
 	}
 
 }

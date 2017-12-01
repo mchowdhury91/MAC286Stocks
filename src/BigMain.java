@@ -105,7 +105,7 @@ public class BigMain {
 		
 		float[] stopLossValues = { 2f, 4f, 5f, 10f };
 		float[] targetValues = { 2f, 4f, 5f, 10f };
-		int[] holdLimits = { 0 };
+		int[] holdLimits = { 3, 4, 5, 10 };
 		
 		File statsDir = bigMain.initDirectory("./Stats");
 

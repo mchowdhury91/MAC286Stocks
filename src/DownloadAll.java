@@ -28,7 +28,7 @@ public class DownloadAll {
 			}
 		}
 		
-		BufferedReader bR = new BufferedReader(new FileReader("indices.txt"));
+		BufferedReader bR = new BufferedReader(new FileReader("symList.txt"));
 		String line;
 
 		while((line = bR.readLine()) != null){
@@ -42,6 +42,7 @@ public class DownloadAll {
 		
 		bR.close();
 		
+		/**
 		bR = new BufferedReader(new FileReader("stocks.txt"));
 		while((line = bR.readLine()) != null){
 			// remove any new line and carriage return characters
@@ -67,6 +68,7 @@ public class DownloadAll {
 		}
 		
 		bR.close();	
+		**/
 		
 	}
 

@@ -10,10 +10,8 @@ import java.util.ArrayList;
 
 public class BigMain {
 
-	/**
-	 * 
-	 * @return
-	 */
+	final static String STATS_DIR_STR = "./Stats2";	
+	
 	public ArrayList<String> createSymListArray() {
 		ArrayList<String> symList = new ArrayList<String>();
 		BufferedReader bR = null;
@@ -100,14 +98,16 @@ public class BigMain {
 		File directory = bigMain.initDirectory("./Data");
 		
 		Simulator simulator = new Simulator();
-		ReversalNewHighs rhn = new ReversalNewHighs();
-		simulator.setTradingPattern(rhn);
+		//ReversalNewHighs tp = new ReversalNewHighs();
+		JackInTheBox tp = new JackInTheBox();
+		
+		simulator.setTradingPattern(tp);
 		
 		float[] stopLossValues = { 2f, 4f, 5f, 10f };
 		float[] targetValues = { 2f, 4f, 5f, 10f };
-		int[] holdLimits = { 3, 4, 5, 10 };
+		int[] holdLimits = { 5 };
 		
-		File statsDir = bigMain.initDirectory("./Stats");
+		File statsDir = bigMain.initDirectory(STATS_DIR_STR);
 
 		File tradesDir = bigMain.initDirectory(statsDir + "/Trades");
 
@@ -115,7 +115,7 @@ public class BigMain {
 		for(int holdLimit : holdLimits){
 			Stats[] statsList = new Stats[stopLossValues.length * targetValues.length];
 			int listIndex = 0;
-			rhn.setHoldLimit(holdLimit);
+			tp.setHoldLimit(holdLimit);
 			
 			for (float stopLoss : stopLossValues) {
 				for (float target : targetValues) {

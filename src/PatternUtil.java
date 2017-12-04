@@ -60,6 +60,20 @@ public class PatternUtil {
 		
 		return true;
 	}
+
+	public static boolean largestNDayRange(int t, DataArray dataArray, int n){
+		
+		Vector<DataBar> barList = dataArray.getBarVector();
+		
+		float max = barList.get(t).getRange();
+		for(int i = t-1; i >= t-(n-1); i--){
+			if(barList.get(i).getRange() >= max){
+				return false;
+			}
+		}
+		
+		return true;
+	}
 	
 	public static boolean tradesUnderYesterdaysLow(int t, DataArray dataArray){
 		Vector<DataBar> barList = dataArray.getBarVector();
@@ -67,13 +81,28 @@ public class PatternUtil {
 		
 	}
 
+	public static boolean tradesOverYesterdaysLow(int t, DataArray dataArray){
+		Vector<DataBar> barList = dataArray.getBarVector();
+		return (barList.get(t).getLow() > barList.get(t-1).getLow());
+		
+	}
+	
 	public static boolean tradesOverYesterdaysHigh(int t, DataArray dataArray){
 		Vector<DataBar> barList = dataArray.getBarVector();
 		return (barList.get(t).getHigh() > barList.get(t-1).getHigh());
 	}	
 	
+	public static boolean tradesUnderYesterdaysHigh(int t, DataArray dataArray){
+		Vector<DataBar> barList = dataArray.getBarVector();
+		return (barList.get(t).getHigh() < barList.get(t-1).getHigh());
+	}		
+	
 	public static boolean outsideDay(int t, DataArray dataArray){
 		return (tradesOverYesterdaysHigh(t, dataArray) && tradesUnderYesterdaysLow(t, dataArray));
 	}
 
+	public static boolean insideDay(int t, DataArray dataArray){
+		return (tradesUnderYesterdaysHigh(t, dataArray) && tradesOverYesterdaysLow(t, dataArray));
+	}
+	
 }

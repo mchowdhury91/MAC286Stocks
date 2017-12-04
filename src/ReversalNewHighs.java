@@ -71,7 +71,7 @@ public class ReversalNewHighs extends TradingPattern {
 				trade.setTarget(target);
 				
 				// nextDay = day we entered trade
-				trade = findShortExitTrade(nextDay, trade);
+				trade = findShortTradeExit(nextDay, trade);
 				trade.close();
 				if (Math.abs(trade.getEntryPrice() - trade.getExitPrice()) > 0.001) {
 					tradeArray.add(trade);
@@ -141,7 +141,7 @@ public class ReversalNewHighs extends TradingPattern {
 		return trade;
 	}
 	
-	private Trade findShortExitTrade(int entryDay, Trade trade){
+	private Trade findShortTradeExit(int entryDay, Trade trade){
 		
 		float stopPrice = trade.getEntryPrice() * (1f + trade.getStopLoss() / 100f);
 		float targetPrice = trade.getEntryPrice() * (1f - trade.getTarget() / 100f);

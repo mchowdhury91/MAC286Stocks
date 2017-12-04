@@ -38,20 +38,22 @@ public class JackInTheBox extends TradingPattern {
 				// buy at opening of next day
 				int entryDay = i + 2;
 				// bar for when we enter trade
-				DataBar entryBar = dataArray.get(entryDay);
+				DataBar day3Bar = dataArray.get(entryDay);
 				DataBar day1Bar = dataArray.get(i);
 				
 				float entryPrice = 0f;
 				
-				if(entryBar.getOpen() >= day1Bar.getHigh() + 1){
-					entryPrice = entryBar.getOpen();
-				}else if(entryBar.getHigh() >= day1Bar.getHigh() + 1){
+				//entryPrice = day1Bar.getHigh() + 1;
+				
+				if(day3Bar.getOpen() >= day1Bar.getHigh() + 1){
+					entryPrice = day3Bar.getOpen();
+				}else if(day3Bar.getHigh() >= day1Bar.getHigh() + 1){
 					entryPrice = day1Bar.getHigh() + 1;
 				}else{
 					continue;
-				}
+				} 
 				
-				Trade trade = new Trade(entryBar.getDate(), entryPrice, Direction.LONG);
+				Trade trade = new Trade(day3Bar.getDate(), entryPrice, Direction.LONG);
 				trade.setSymbol(dataArray.getSymbol());
 				trade.setStopLoss(stopLoss);
 				trade.setTarget(target);
@@ -71,20 +73,20 @@ public class JackInTheBox extends TradingPattern {
 				
 				int entryDay = i + 2;
 				// bar for when we enter trade
-				DataBar entryBar = dataArray.get(entryDay);
+				DataBar day3Bar = dataArray.get(entryDay);
 				DataBar day1Bar = dataArray.get(i);
 				
 				float entryPrice = 0f;
 				
-				if(entryBar.getOpen() <= day1Bar.getLow() - 1){
-					entryPrice = entryBar.getOpen();
-				}else if(entryBar.getLow() <= day1Bar.getLow() - 1){
+				if(day3Bar.getOpen() <= day1Bar.getLow() - 1){
+					entryPrice = day3Bar.getOpen();
+				}else if(day3Bar.getLow() <= day1Bar.getLow() - 1){
 					entryPrice = day1Bar.getLow() - 1;
 				}else{
 					continue;
 				}
 				
-				Trade trade = new Trade(entryBar.getDate(), entryPrice, Direction.SHORT);
+				Trade trade = new Trade(day3Bar.getDate(), entryPrice, Direction.SHORT);
 				trade.setSymbol(dataArray.getSymbol());
 				trade.setStopLoss(stopLoss);
 				trade.setTarget(target);

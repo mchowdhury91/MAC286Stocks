@@ -103,9 +103,9 @@ public class BigMain {
 		
 		simulator.setTradingPattern(tp);
 		
-		float[] stopLossValues = { 2f, 4f, 5f, 10f };
-		float[] targetValues = { 2f, 4f, 5f, 10f };
-		int[] holdLimits = { 5 };
+		float[] stopLossValues = { 1f };
+		float[] targetValues = { 2f, 3f, 4f };
+		int[] holdLimits = { 0 };
 		
 		File statsDir = bigMain.initDirectory(STATS_DIR_STR);
 

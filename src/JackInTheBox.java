@@ -41,15 +41,18 @@ public class JackInTheBox extends TradingPattern {
 				DataBar day3Bar = dataArray.get(entryDay);
 				DataBar day1Bar = dataArray.get(i);
 				
-				float entryPrice = 0f;
-				
-				//entryPrice = day1Bar.getHigh() + 1;
+				float entryPrice = 0f;				
 				
 				if(day3Bar.getOpen() >= day1Bar.getHigh() + 1){
 					entryPrice = day3Bar.getOpen();
 				}else if(day3Bar.getHigh() >= day1Bar.getHigh() + 1){
 					entryPrice = day1Bar.getHigh() + 1;
 				}else{
+					System.out.println("Skipping trade because...");
+					System.out.println("Day 3 Open: " + day3Bar.getOpen());
+					System.out.println("Day 3 High: " + day3Bar.getHigh());
+					System.out.println("Day 1 High: " + day1Bar.getHigh());
+					System.out.println();
 					continue;
 				} 
 				

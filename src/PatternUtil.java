@@ -77,24 +77,24 @@ public class PatternUtil {
 	
 	public static boolean tradesUnderYesterdaysLow(int t, DataArray dataArray){
 		Vector<DataBar> barList = dataArray.getBarVector();
-		return (barList.get(t).getLow() < barList.get(t-1).getLow());
+		return (barList.get(t).getLow() <= barList.get(t-1).getLow());
 		
 	}
 
 	public static boolean tradesOverYesterdaysLow(int t, DataArray dataArray){
 		Vector<DataBar> barList = dataArray.getBarVector();
-		return (barList.get(t).getLow() > barList.get(t-1).getLow());
+		return (barList.get(t).getLow() >= barList.get(t-1).getLow());
 		
 	}
 	
 	public static boolean tradesOverYesterdaysHigh(int t, DataArray dataArray){
 		Vector<DataBar> barList = dataArray.getBarVector();
-		return (barList.get(t).getHigh() > barList.get(t-1).getHigh());
+		return (barList.get(t).getHigh() >= barList.get(t-1).getHigh());
 	}	
 	
 	public static boolean tradesUnderYesterdaysHigh(int t, DataArray dataArray){
 		Vector<DataBar> barList = dataArray.getBarVector();
-		return (barList.get(t).getHigh() < barList.get(t-1).getHigh());
+		return (barList.get(t).getHigh() <= barList.get(t-1).getHigh());
 	}		
 	
 	public static boolean outsideDay(int t, DataArray dataArray){

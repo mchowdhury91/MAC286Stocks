@@ -1,4 +1,0 @@
-numTrades,numLongTrades,numShortTrades,numWinners,numLosers,numLongWinners,numLongLosers,numShortWinners,numShortLosers,maxHoldingPeriod,minHoldingPeriod,avgHoldingPeriod,averagePL,averageLongPL,averageShortPL,maxPL,minPL,stopLoss,target,
-879,585,294,267,612,185,400,82,212,22,1,1.73,-0.25,-0.13,-0.49,22.09,-12.46,1,2,
-879,585,294,207,672,137,448,70,224,23,1,2.14,-0.27,-0.18,-0.45,22.09,-12.46,1,3,
-879,585,294,178,701,121,464,57,237,77,1,2.65,-0.23,-0.12,-0.45,22.09,-12.46,1,4,

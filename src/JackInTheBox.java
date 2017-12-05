@@ -43,10 +43,10 @@ public class JackInTheBox extends TradingPattern {
 				
 				float entryPrice = 0f;				
 				
-				if(day3Bar.getOpen() >= day1Bar.getHigh() + 1){
+				if(day3Bar.getOpen() >= day1Bar.getHigh() + 0.01f){
 					entryPrice = day3Bar.getOpen();
-				}else if(day3Bar.getHigh() >= day1Bar.getHigh() + 1){
-					entryPrice = day1Bar.getHigh() + 1;
+				}else if(day3Bar.getHigh() >= day1Bar.getHigh() + 0.01f){
+					entryPrice = day1Bar.getHigh() + 0.01f;
 				}else{
 					System.out.println("Skipping trade because...");
 					System.out.println("Day 3 Open: " + day3Bar.getOpen());
@@ -63,7 +63,7 @@ public class JackInTheBox extends TradingPattern {
 
 				trade = findLongTradeExit(entryDay, trade);
 
-				if (Math.abs(trade.getEntryPrice() - trade.getExitPrice()) > 0.001) {
+				if (Math.abs(trade.getEntryPrice() - trade.getExitPrice()) > 0.001f) {
 					tradeArray.add(trade);
 					System.out.println(trade);
 					System.out.println();
@@ -81,10 +81,10 @@ public class JackInTheBox extends TradingPattern {
 				
 				float entryPrice = 0f;
 				
-				if(day3Bar.getOpen() <= day1Bar.getLow() - 1){
+				if(day3Bar.getOpen() <= day1Bar.getLow() - 0.01f){
 					entryPrice = day3Bar.getOpen();
-				}else if(day3Bar.getLow() <= day1Bar.getLow() - 1){
-					entryPrice = day1Bar.getLow() - 1;
+				}else if(day3Bar.getLow() <= day1Bar.getLow() - 0.01f){
+					entryPrice = day1Bar.getLow() - 0.01f;
 				}else{
 					continue;
 				}

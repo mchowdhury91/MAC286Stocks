@@ -24,7 +24,7 @@ public class PatternUtil {
 		
 		Vector<DataBar> barList = dataArray.getBarVector();
 		float max = barList.get(t).getHigh();
-		for(int i = t-1; i >= 0; i--){
+		for(int i = t-1; i >= t-(n-1); i--){
 			if(barList.get(i).getHigh() >= max){
 				return false;
 			}
@@ -38,7 +38,7 @@ public class PatternUtil {
 		Vector<DataBar> barList = dataArray.getBarVector();
 		
 		float min = barList.get(t).getLow();
-		for(int i = t-1; i >= 0; i--){
+		for(int i = t-1; i >= t-59; i--){
 			if(barList.get(i).getLow() <= min){
 				return false;
 			}

@@ -33,6 +33,25 @@ public class PatternUtil {
 		return true;
 	}
 
+	public static boolean nDayLow(int t, DataArray dataArray, int n){	
+
+		if(t < (n-1)){
+			System.out.println("For nDayHigh, your initial day must be greater than n-1");
+			return false;
+		}		
+		
+		Vector<DataBar> barList = dataArray.getBarVector();
+		
+		float min = barList.get(t).getLow();
+		for(int i = t-1; i >= t-(n-1); i--){
+			if(barList.get(i).getLow() <= min){
+				return false;
+			}
+		}
+		
+		return true;
+	}	
+	
 	public static boolean sixtyDayLow(int t, DataArray dataArray){
 		
 		Vector<DataBar> barList = dataArray.getBarVector();

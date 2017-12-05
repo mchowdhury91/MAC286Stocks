@@ -152,7 +152,7 @@ public class ReversalNewHighs extends TradingPattern {
 			DataBar exitBar = dataArray.get(j);
 			holdingPeriod++;
 			
-			if(holdLimit > 0 && holdingPeriod > holdLimit){
+			if(holdLimit > 0 && holdingPeriod >= holdLimit){
 				System.out.println("Holding Period " + holdingPeriod + " exceeded holdLimit " + holdLimit);
 				trade.setExitDate(exitBar.getDate());
 				trade.setExitPrice(exitBar.getOpen());
